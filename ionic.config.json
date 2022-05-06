@@ -1,0 +1,7 @@
+{
+  "name": "app-pacients-familiars-ps",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

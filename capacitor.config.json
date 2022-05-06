@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "app-pacients-familiars-ps",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
