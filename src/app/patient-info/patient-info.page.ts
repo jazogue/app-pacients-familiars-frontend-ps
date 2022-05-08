@@ -15,7 +15,7 @@ export class PatientInfoPage implements OnInit {
   patientId: string;
   patient: any;
   genStates: any = [];
-  selectedState: any;
+  selectedState: any = null;
   stateNameInput: string;
 
   constructor(
@@ -29,7 +29,7 @@ export class PatientInfoPage implements OnInit {
   ngOnInit() {
     this.patientId = this.activatedRoute.snapshot.paramMap.get('patientId');
 
-    this.api.getAllGenStates(this.patientId).subscribe((result) => {
+    this.api.getAllGenStates().subscribe((result) => {
       this.genStates = result;
     });
 
@@ -48,6 +48,7 @@ export class PatientInfoPage implements OnInit {
       this.presentToastErrorPostGenericState();
     } else {
       this.api.postGenericState(this.patientId, this.selectedState.stateId);
+      this.presentStateSent();
     }
   }
 

@@ -22,16 +22,17 @@ export class ApiService {
     return this.http.get('http://localhost:8080/states/patient/' + patientId);
   }
 
-  getAllGenStates(patientId) {
-    return this.http.get(
-      'http://localhost:8080/states/patient/' + patientId + '/gen'
-    );
+  getAllGenStates() {
+    return this.http.get('http://localhost:8080/states/generic');
   }
 
   postGenericState(patientId, stateId) {
     return this.http
       .post(
-        'http://localhost:8080/state/' + stateId + '/patient/' + patientId,
+        'http://localhost:8080/state/generic/' +
+          stateId +
+          '/patient/' +
+          patientId,
         null
       )
       .toPromise();
