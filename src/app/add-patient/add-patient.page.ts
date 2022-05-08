@@ -28,8 +28,6 @@ export class AddPatientPage implements OnInit {
       this.patientName == null ||
       this.patientFirstSurname === '' ||
       this.patientFirstSurname == null ||
-      this.patientSecondSurname === '' ||
-      this.patientSecondSurname == null ||
       this.healthCardIdentifier === '' ||
       this.healthCardIdentifier == null ||
       this.healthCareType === '' ||

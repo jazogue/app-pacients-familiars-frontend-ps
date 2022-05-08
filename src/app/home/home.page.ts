@@ -3,34 +3,44 @@ import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { ToastController } from '@ionic/angular';
 
+import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  patient: any;
-  patientId: string;
+  patient: any = null;
+  searchInput: string;
   constructor(
     public api: ApiService,
     private router: Router,
-    public toastController: ToastController
+    public toastController: ToastController,
+    public navCtrl: NavController
   ) {}
 
   directToPatientInfo() {
-    this.api.getPatient(this.patientId).subscribe((result) => {
+    this.api.getPatientByAnyCriteria(this.searchInput).subscribe((result) => {
       this.patient = result;
     });
+
     setTimeout(() => {
-      if (this.patient.patientId !== this.patientId) {
+      if (this.patient == null) {
         this.presentToastErrorSearch();
       } else {
-        this.router.navigate([
-          '/patient-info',
-          {
+        const navigationExtras: NavigationExtras = {
+          queryParams: {
             patientId: this.patient.patientId,
+            patientName: this.patient.patientName,
+            firstSurname: this.patient.firstSurname,
+            secondSurname: this.patient.secondSurname,
+            healthCardIdentifier: this.patient.healthCardIdentifier,
+            hospitalCareType: this.patient.hospitalCareType,
           },
-        ]);
+        };
+        this.navCtrl.navigateForward(['patient-info'], navigationExtras);
       }
     }, 2000);
   }

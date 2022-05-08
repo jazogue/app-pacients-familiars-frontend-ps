@@ -17,6 +17,11 @@ export class PatientInfoPage implements OnInit {
   genStates: any = [];
   selectedState: any = null;
   stateNameInput: string;
+  patientName: string;
+  firstSurname: string;
+  secondSurname: string;
+  healthCardIdentifier: string;
+  hospitalCareType: string;
 
   constructor(
     public api: ApiService,
@@ -27,20 +32,24 @@ export class PatientInfoPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.patientId = this.activatedRoute.snapshot.paramMap.get('patientId');
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.patientId = params.patientId;
+      this.patientName = params.patientName;
+      this.firstSurname = params.firstSurname;
+      this.secondSurname = params.secondSurname;
+      this.healthCardIdentifier = params.healthCardIdentifier;
+      this.hospitalCareType = params.hospitalCareType;
+    });
+
+    if (this.secondSurname === 'undefined') {
+      this.secondSurname = '';
+    }
+
+    console.log(this.activatedRoute.snapshot.paramMap.get('patientInfo'));
 
     this.api.getAllGenStates().subscribe((result) => {
       this.genStates = result;
     });
-
-    /*
-    this.api.getPatient(this.patientId).subscribe((result) => {
-      this.patient = result;
-      console.log(this.patient.patientName);
-    });
-    -*/
-
-    //console.log(this.patient.patientId);
   }
 
   postGenericState() {

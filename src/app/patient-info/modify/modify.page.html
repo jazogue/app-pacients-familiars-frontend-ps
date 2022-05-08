@@ -16,7 +16,7 @@
         </ion-text>
         <ion-row>
           <ion-text>
-            <h5>Introdueix el nom *</h5>
+            <h5>Introdueix el nom. Nom actual:</h5>
           </ion-text>
           <ion-item class="underline">
             <ion-input type="text" [(ngModel)]="patientName"></ion-input>
@@ -25,7 +25,7 @@
 
         <ion-row>
           <ion-text>
-            <h5>Introdueix el primer cognom *</h5>
+            <h5>Introdueix el primer cognom. Primer cognom actual:</h5>
           </ion-text>
           <ion-item class="underline">
             <ion-input
@@ -37,7 +37,7 @@
 
         <ion-row>
           <ion-text>
-            <h5>Introdueix el segon cognom</h5>
+            <h5>Introdueix el segon cognom. Segon cognom actual:</h5>
           </ion-text>
           <ion-item class="underline">
             <ion-input
@@ -49,7 +49,10 @@
 
         <ion-row>
           <ion-text color="dark">
-            <h5>Introdueix el número de targeta sanitària *</h5>
+            <h5>
+              Introdueix el número de targeta sanitària. Número de targeta
+              sanitària actual:
+            </h5>
           </ion-text>
           <ion-item class="underline">
             <ion-input
@@ -61,7 +64,10 @@
 
         <ion-row>
           <ion-text color="dark">
-            <h5>Selecciona el tipus d'atenció sanitària a rebre *</h5>
+            <h5>
+              Selecciona el tipus d'atenció sanitària a rebre. Tipus d'atenció
+              sanitària actual:
+            </h5>
           </ion-text>
           <ion-item class="underline">
             <ion-select
@@ -84,7 +90,7 @@
             fill="outline"
             (click)="createPatient()"
           >
-            Crear pacient
+            Modificar pacient
             <ion-icon slot="start" name="person-add-outline"></ion-icon>
             <ion-icon slot="end" name="chevron-forward"></ion-icon>
           </ion-button>
