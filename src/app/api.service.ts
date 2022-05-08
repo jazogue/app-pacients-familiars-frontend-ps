@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +22,37 @@ export class ApiService {
     return this.http.get('http://localhost:8080/states/patient/' + patientId);
   }
 
+  getAllGenStates(patientId) {
+    return this.http.get(
+      'http://localhost:8080/states/patient/' + patientId + '/gen'
+    );
+  }
+
+  postGenericState(patientId, stateId) {
+    return this.http
+      .post(
+        'http://localhost:8080/state/' + stateId + '/patient/' + patientId,
+        null
+      )
+      .toPromise();
+  }
+
+  postCustomState(patientId, stateName) {
+    return this.http
+      .post(
+        'http://localhost:8080/state/custom/patient/' + patientId,
+        JSON.parse(
+          '{ "stateName": "' +
+            stateName +
+            '", "startTime": "' +
+            '2022-05-08T08:04:33.000+00:00' +
+            '", "stateType": "' +
+            'personalitzat" }'
+        )
+      )
+      .toPromise();
+  }
+
   postPatient(
     patientName,
     patientFirstSurname,
@@ -30,17 +60,6 @@ export class ApiService {
     healthCardIdentifier,
     healthCareType
   ) {
-    console.log(
-      patientName +
-        ' ' +
-        patientFirstSurname +
-        ' ' +
-        patientSecondSurname +
-        ' ' +
-        healthCardIdentifier +
-        ' ' +
-        healthCareType
-    );
     return this.http
       .post(
         'http://localhost:8080/patient',

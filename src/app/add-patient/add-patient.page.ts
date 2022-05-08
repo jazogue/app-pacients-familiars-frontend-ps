@@ -35,10 +35,8 @@ export class AddPatientPage implements OnInit {
       this.healthCareType === '' ||
       this.healthCareType == null
     ) {
-      console.log('entro en iff');
-      this.presentToastSearchIdError();
+      this.presentToastIncompleteForm();
     } else {
-      console.log('entro en elseee');
       this.api.postPatient(
         this.patientName,
         this.patientFirstSurname,
@@ -46,13 +44,22 @@ export class AddPatientPage implements OnInit {
         this.healthCardIdentifier,
         this.healthCareType
       );
-      console.log('despueeeews');
+      this.presentToastAddedPatient();
     }
   }
 
-  private async presentToastSearchIdError() {
+  private async presentToastIncompleteForm() {
     const toast = await this.toastController.create({
-      message: 'Faltan campos por rellenar',
+      message: 'Falten camps per emplenar',
+      duration: 2000,
+      position: 'middle',
+    });
+    toast.present();
+  }
+
+  private async presentToastAddedPatient() {
+    const toast = await this.toastController.create({
+      message: 'Pacient afegit correctament',
       duration: 2000,
       position: 'middle',
     });

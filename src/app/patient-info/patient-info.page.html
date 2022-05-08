@@ -1,0 +1,113 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <img src="assets/img/top_bar2.png" width="50px" slot="end" />
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid class="ion-text-center">
+    <ion-card class="content-card">
+      <ion-card-content>
+        <ion-row>
+          <ion-text>
+            <h1>Pacient amb ID: {{patientId}}</h1>
+            <h2>Informació del pacient:</h2>
+          </ion-text>
+        </ion-row>
+        <ion-row>
+          <ion-text>
+            <h5>Nom:</h5>
+            <h5>Cognoms:</h5>
+            <h5>Número de targeta sanitària:</h5>
+            <h5>Tipus d'atenció sanitària:</h5>
+          </ion-text>
+        </ion-row>
+
+        <ion-row>
+          <ion-text color="dark">
+            <h2>Afegir un estat nou al pacient:</h2>
+            <h5>Tria un nou tipus d'estat:</h5>
+          </ion-text>
+          <ion-item class="underline">
+            <ion-select
+              placeholder="Selecciona un estat predefinit"
+              okText="Acceptar"
+              cancelText="Cancel·lar"
+              [(ngModel)]="newStateType"
+              interface="popover"
+            >
+              <ion-select-option value="generic">Genèric</ion-select-option>
+              <ion-select-option value="personalitzat"
+                >Personalitzat</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <div *ngIf="newStateType === 'generic'">
+            <div>
+              <ion-item class="underline">
+                <ion-select
+                  placeholder="Selecciona un estat predefinit"
+                  okText="Acceptar"
+                  cancelText="Cancel·lar"
+                  [(ngModel)]="selectedState"
+                >
+                  <ion-select-option
+                    [value]="genState"
+                    *ngFor="let genState of genStates"
+                    >{{genState.stateName}}</ion-select-option
+                  >
+                </ion-select>
+              </ion-item>
+              <ion-button
+                class="searchButton"
+                size="medium"
+                color="primary-color"
+                fill="outline"
+                (click)="postGenericState()"
+              >
+                Enviar estat genèric
+                <ion-icon slot="end" name="send-outline"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+          <div *ngIf="newStateType === 'personalitzat'">
+            <ion-text color="dark">
+              <h5>Estat personalitzable:</h5>
+            </ion-text>
+            <ion-item class="underline">
+              <ion-input type="text" [(ngModel)]="stateNameInput"></ion-input>
+            </ion-item>
+            <ion-button
+              class="searchButton"
+              size="medium"
+              color="primary-color"
+              fill="outline"
+              (click)="postCustomState()"
+            >
+              Enviar estat personalitzat
+              <ion-icon slot="end" name="send-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <ion-row>
+          <ion-button
+            class="searchButton"
+            size="medium"
+            color="primary-color"
+            fill="outline"
+            (click)="directToStates()"
+          >
+            Consultar els estats del pacient
+            <ion-icon slot="end" name="newspaper-outline"></ion-icon>
+          </ion-button>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-grid>
+</ion-content>

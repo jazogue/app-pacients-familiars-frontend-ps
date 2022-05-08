@@ -1,0 +1,30 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <img src="assets/img/top_bar2.png" width="50px" slot="end" />
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true">
+  <ion-card
+    *ngFor="let iniState of initialStates.slice().reverse(); let first = first;"
+    class="card-center"
+  >
+    <div *ngIf="first">
+      <div [ngStyle]="{'color': 'white', 'background': '#3e4a74'}">
+        <ion-card-content>
+          <h2><strong>{{iniState.stateName}}</strong></h2>
+          <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
+        </ion-card-content>
+      </div>
+    </div>
+    <div *ngIf="!first">
+      <ion-card-content>
+        <h2>{{iniState.stateName}}</h2>
+        <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
+      </ion-card-content>
+    </div>
+  </ion-card>
+</ion-content>
