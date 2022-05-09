@@ -89,6 +89,13 @@
             <ion-icon slot="end" name="chevron-forward"></ion-icon>
           </ion-button>
         </ion-row>
+        <div *ngIf="showId">
+          <ion-row>
+            <ion-text>
+              <h5>El pacient creat té el ID: {{patientId}}</h5>
+            </ion-text>
+          </ion-row>
+        </div>
       </ion-card-content>
     </ion-card>
   </ion-grid>

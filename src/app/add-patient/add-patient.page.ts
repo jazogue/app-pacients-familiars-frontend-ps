@@ -13,6 +13,8 @@ export class AddPatientPage implements OnInit {
   patientSecondSurname: string;
   healthCardIdentifier: string;
   healthCareType: string;
+  patientId = '';
+  showId = false;
   public response: any;
 
   constructor(
@@ -35,14 +37,25 @@ export class AddPatientPage implements OnInit {
     ) {
       this.presentToastIncompleteForm();
     } else {
-      this.api.postPatient(
-        this.patientName,
-        this.patientFirstSurname,
-        this.patientSecondSurname,
-        this.healthCardIdentifier,
-        this.healthCareType
-      );
-      this.presentToastAddedPatient();
+      this.api
+        .postPatient(
+          this.patientName,
+          this.patientFirstSurname,
+          this.patientSecondSurname,
+          this.healthCardIdentifier,
+          this.healthCareType
+        )
+        .subscribe(
+          (result: any) => {
+            this.presentToastAddedPatient();
+            this.patientId = result.id;
+            this.showId = true;
+          },
+          (err) => {
+            this.presentToastNotAddedPatient();
+            this.showId = false;
+          }
+        );
     }
   }
 
@@ -58,6 +71,16 @@ export class AddPatientPage implements OnInit {
   private async presentToastAddedPatient() {
     const toast = await this.toastController.create({
       message: 'Pacient afegit correctament',
+      duration: 2000,
+      position: 'middle',
+    });
+    toast.present();
+  }
+
+  private async presentToastNotAddedPatient() {
+    const toast = await this.toastController.create({
+      message:
+        'Pacient no afegit, número de targeta sanitaria ja existent i actiu',
       duration: 2000,
       position: 'middle',
     });

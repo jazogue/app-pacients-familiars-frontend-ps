@@ -45,8 +45,6 @@ export class PatientInfoPage implements OnInit {
       this.secondSurname = '';
     }
 
-    console.log(this.activatedRoute.snapshot.paramMap.get('patientInfo'));
-
     this.api.getAllGenStates().subscribe((result) => {
       this.genStates = result;
     });

@@ -8,21 +8,11 @@ import { catchError } from 'rxjs/operators';
 export class ApiService {
   constructor(public http: HttpClient) {}
 
-  getPatientById(patientId) {
-    return this.http.get('http://localhost:8080/patient/id/' + patientId).pipe(
-      catchError((error) => {
-        if (error.status === 404) {
-          return null;
-        }
-      })
-    );
-  }
-
   getPatientByAnyCriteria(value) {
     return this.http.get('http://localhost:8080/patient/any/' + value).pipe(
       catchError((error) => {
-        if (error.status === 404) {
-          return null;
+        if (error.status === 404 || error.status === 500) {
+          return error;
         }
       })
     );
@@ -88,6 +78,12 @@ export class ApiService {
             '"  }'
         )
       )
-      .toPromise();
+      .pipe(
+        catchError((error) => {
+          if (error.status === 404 || error.status === 500) {
+            return error;
+          }
+        })
+      );
   }
 }

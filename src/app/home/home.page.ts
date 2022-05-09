@@ -22,14 +22,9 @@ export class HomePage {
   ) {}
 
   directToPatientInfo() {
-    this.api.getPatientByAnyCriteria(this.searchInput).subscribe((result) => {
-      this.patient = result;
-    });
-
-    setTimeout(() => {
-      if (this.patient == null) {
-        this.presentToastErrorSearch();
-      } else {
+    this.api.getPatientByAnyCriteria(this.searchInput).subscribe(
+      (result) => {
+        this.patient = result;
         const navigationExtras: NavigationExtras = {
           queryParams: {
             patientId: this.patient.patientId,
@@ -41,8 +36,11 @@ export class HomePage {
           },
         };
         this.navCtrl.navigateForward(['patient-info'], navigationExtras);
+      },
+      (err) => {
+        this.presentToastErrorSearch();
       }
-    }, 2000);
+    );
   }
 
   directToCreatePatient() {
