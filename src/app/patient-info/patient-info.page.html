@@ -14,10 +14,23 @@
         <ion-row>
           <ion-text>
             <h1>Pacient amb ID: {{patientId}}</h1>
-            <h2>Informació del pacient:</h2>
           </ion-text>
         </ion-row>
         <ion-row>
+          <ion-col size="9">
+            <ion-text>
+              <h2>Informació del pacient</h2>
+            </ion-text>
+          </ion-col>
+          <ion-col class="editButtonCol">
+            <ion-button
+              class="editButton"
+              color="primary-color"
+              fill="outline"
+              (click)="goToModifyPatient()"
+              ><ion-icon name="create-outline"></ion-icon
+            ></ion-button>
+          </ion-col>
           <ion-text>
             <h5>Nom: {{patientName}}</h5>
             <h5>Cognoms: {{firstSurname}} {{secondSurname}}</h5>
@@ -65,7 +78,7 @@
                 </ion-select>
               </ion-item>
               <ion-button
-                class="searchButton"
+                class="editButton"
                 size="medium"
                 color="primary-color"
                 fill="outline"
@@ -84,7 +97,7 @@
               <ion-input type="text" [(ngModel)]="stateNameInput"></ion-input>
             </ion-item>
             <ion-button
-              class="searchButton"
+              class="editButton"
               size="medium"
               color="primary-color"
               fill="outline"
@@ -97,7 +110,7 @@
         </ion-row>
         <ion-row>
           <ion-button
-            class="searchButton"
+            class="editButton"
             size="medium"
             color="primary-color"
             fill="outline"

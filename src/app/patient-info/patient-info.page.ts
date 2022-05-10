@@ -4,6 +4,8 @@ import { ApiService } from '../api.service';
 import { LoadingController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-patient-info',
@@ -28,7 +30,8 @@ export class PatientInfoPage implements OnInit {
     public activatedRoute: ActivatedRoute,
     public loadingController: LoadingController,
     public toastController: ToastController,
-    private router: Router
+    private router: Router,
+    public navCtrl: NavController
   ) {}
 
   ngOnInit() {
@@ -48,6 +51,20 @@ export class PatientInfoPage implements OnInit {
     this.api.getAllGenStates().subscribe((result) => {
       this.genStates = result;
     });
+  }
+
+  goToModifyPatient() {
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        patientId: this.patientId,
+        patientName: this.patientName,
+        firstSurname: this.firstSurname,
+        secondSurname: this.secondSurname,
+        healthCardIdentifier: this.healthCardIdentifier,
+        hospitalCareType: this.hospitalCareType,
+      },
+    };
+    this.navCtrl.navigateForward(['patient-info/modify'], navigationExtras);
   }
 
   postGenericState() {

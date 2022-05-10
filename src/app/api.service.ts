@@ -54,6 +54,36 @@ export class ApiService {
       .toPromise();
   }
 
+  modifyPatient(
+    patientId,
+    patientName,
+    firstSurname,
+    secondSurname,
+    healthCardIdentifier,
+    hospitalCareType
+  ) {
+    return this.http
+      .post(
+        'http://localhost:8080/patient/modify',
+        JSON.parse(
+          '{ "patientId": "' +
+            patientId +
+            '", "patientName": "' +
+            patientName +
+            '", "firstSurname": "' +
+            firstSurname +
+            '", "secondSurname": "' +
+            secondSurname +
+            '", "hospitalCareType": "' +
+            hospitalCareType +
+            '", "healthCardIdentifier": "' +
+            healthCardIdentifier +
+            '"  }'
+        )
+      )
+      .toPromise();
+  }
+
   postPatient(
     patientName,
     patientFirstSurname,

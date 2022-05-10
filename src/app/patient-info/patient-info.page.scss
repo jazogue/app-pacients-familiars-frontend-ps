@@ -17,6 +17,7 @@ ion-content {
 ion-grid {
   height: 100%;
 }
+
 ion-row {
   align-items: center;
   justify-content: center;
@@ -24,11 +25,15 @@ ion-row {
   margin-top: 30px;
 }
 
+.editButtonCol {
+  margin-left: -50px;
+}
+
 ion-card {
   background-color: #ffffff;
   box-shadow: none !important;
 }
-.searchButton {
+.editButton {
   --border-radius: 0px;
   text-transform: none;
 }

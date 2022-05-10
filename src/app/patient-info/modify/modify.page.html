@@ -12,11 +12,11 @@
     <ion-card class="content-card">
       <ion-card-content>
         <ion-text>
-          <h1>App per a pacients i familiars</h1>
+          <h1>Modificar el pacient amb identificador: {{patientId}}</h1>
         </ion-text>
         <ion-row>
           <ion-text>
-            <h5>Introdueix el nom. Nom actual:</h5>
+            <h5>Introdueix el nom.</h5>
           </ion-text>
           <ion-item class="underline">
             <ion-input type="text" [(ngModel)]="patientName"></ion-input>
@@ -25,34 +25,25 @@
 
         <ion-row>
           <ion-text>
-            <h5>Introdueix el primer cognom. Primer cognom actual:</h5>
+            <h5>Introdueix el primer cognom.</h5>
           </ion-text>
           <ion-item class="underline">
-            <ion-input
-              type="text"
-              [(ngModel)]="patientFirstSurname"
-            ></ion-input>
+            <ion-input type="text" [(ngModel)]="firstSurname"></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row>
           <ion-text>
-            <h5>Introdueix el segon cognom. Segon cognom actual:</h5>
+            <h5>Introdueix el segon cognom.</h5>
           </ion-text>
           <ion-item class="underline">
-            <ion-input
-              type="text"
-              [(ngModel)]="patientSecondSurname"
-            ></ion-input>
+            <ion-input type="text" [(ngModel)]="secondSurname"></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row>
           <ion-text color="dark">
-            <h5>
-              Introdueix el número de targeta sanitària. Número de targeta
-              sanitària actual:
-            </h5>
+            <h5>Introdueix el número de targeta sanitària.</h5>
           </ion-text>
           <ion-item class="underline">
             <ion-input
@@ -64,17 +55,14 @@
 
         <ion-row>
           <ion-text color="dark">
-            <h5>
-              Selecciona el tipus d'atenció sanitària a rebre. Tipus d'atenció
-              sanitària actual:
-            </h5>
+            <h5>Selecciona el tipus d'atenció sanitària a rebre.</h5>
           </ion-text>
           <ion-item class="underline">
             <ion-select
               placeholder="Tipus d'atenció sanitària"
               okText="Acceptar"
               cancelText="Cancel·lar"
-              [(ngModel)]="healthCareType"
+              [(ngModel)]="hospitalCareType"
             >
               <ion-select-option value="quirurgic">Quirurgic</ion-select-option>
               <ion-select-option value="urgencies">Urgencies</ion-select-option>
@@ -88,7 +76,7 @@
             size="medium"
             color="primary-color"
             fill="outline"
-            (click)="createPatient()"
+            (click)="modifyPatient()"
           >
             Modificar pacient
             <ion-icon slot="start" name="person-add-outline"></ion-icon>
