@@ -13,6 +13,7 @@ import { NavigationExtras } from '@angular/router';
 })
 export class HomePage {
   patient: any = null;
+  admission: any = null;
   searchInput: string;
   constructor(
     public api: ApiService,
@@ -22,23 +23,32 @@ export class HomePage {
   ) {}
 
   directToPatientInfo() {
-    this.api.getPatientByAnyCriteria(this.searchInput).subscribe(
-      (result) => {
-        this.patient = result;
-        const navigationExtras: NavigationExtras = {
-          queryParams: {
-            patientId: this.patient.patientId,
-            patientName: this.patient.patientName,
-            firstSurname: this.patient.firstSurname,
-            secondSurname: this.patient.secondSurname,
-            healthCardIdentifier: this.patient.healthCardIdentifier,
-            hospitalCareType: this.patient.hospitalCareType,
+    this.api.getAdmissionByPatientId(this.searchInput).subscribe(
+      (result: any) => {
+        this.admission = result;
+        this.api.getPatientByAnyCriteria(this.searchInput).subscribe(
+          (result2) => {
+            this.patient = result2;
+            const navigationExtras: NavigationExtras = {
+              queryParams: {
+                patientId: this.patient.patientId,
+                patientName: this.patient.patientName,
+                firstSurname: this.patient.firstSurname,
+                secondSurname: this.patient.secondSurname,
+                healthCardIdentifier: this.patient.healthCardIdentifier,
+                admissionId: this.admission.admissionId,
+                hospitalCareType: this.admission.hospitalCareType,
+              },
+            };
+            this.navCtrl.navigateForward(['patient-info'], navigationExtras);
           },
-        };
-        this.navCtrl.navigateForward(['patient-info'], navigationExtras);
+          (err) => {
+            this.presentToastErrorSearchPatientId();
+          }
+        );
       },
       (err) => {
-        this.presentToastErrorSearch();
+        this.presentToastErrorSearchAdmission();
       }
     );
   }
@@ -47,9 +57,18 @@ export class HomePage {
     this.router.navigate(['/add-patient']);
   }
 
-  private async presentToastErrorSearch() {
+  private async presentToastErrorSearchPatientId() {
     const toast = await this.toastController.create({
       message: 'No s`ha trobat aquest pacient',
+      duration: 2000,
+      position: 'middle',
+    });
+    toast.present();
+  }
+
+  private async presentToastErrorSearchAdmission() {
+    const toast = await this.toastController.create({
+      message: 'No s`ha trobat cap admissió disponible amb aquest pacient',
       duration: 2000,
       position: 'middle',
     });

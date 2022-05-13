@@ -8,14 +8,14 @@ import { ApiService } from '../../api.service';
   styleUrls: ['./states.page.scss'],
 })
 export class StatesPage implements OnInit {
-  patientId: string;
+  admissionId: string;
   initialStates: any = [];
 
   constructor(public api: ApiService, public activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.patientId = this.activatedRoute.snapshot.paramMap.get('patientId');
-    this.api.getAllStates(this.patientId).subscribe((result) => {
+    this.admissionId = this.activatedRoute.snapshot.paramMap.get('admissionId');
+    this.api.getAllStates(this.admissionId).subscribe((result) => {
       this.initialStates = result;
     });
   }

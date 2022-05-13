@@ -42,14 +42,14 @@ export class AddPatientPage implements OnInit {
           this.patientName,
           this.patientFirstSurname,
           this.patientSecondSurname,
-          this.healthCardIdentifier,
-          this.healthCareType
+          this.healthCardIdentifier
         )
         .subscribe(
           (result: any) => {
             this.presentToastAddedPatient();
             this.patientId = result.id;
             this.showId = true;
+            this.api.postAdmission(this.healthCareType, this.patientId);
           },
           (err) => {
             this.presentToastNotAddedPatient();

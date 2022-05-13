@@ -14,7 +14,9 @@ export class ModifyPage implements OnInit {
   firstSurname: string;
   secondSurname: string;
   healthCardIdentifier: string;
+  initialHospitalCareType: string;
   hospitalCareType: string;
+  admissionId: string;
   constructor(
     public api: ApiService,
     public activatedRoute: ActivatedRoute,
@@ -28,8 +30,10 @@ export class ModifyPage implements OnInit {
       this.firstSurname = params.firstSurname;
       this.secondSurname = params.secondSurname;
       this.healthCardIdentifier = params.healthCardIdentifier;
-      this.hospitalCareType = params.hospitalCareType;
+      this.initialHospitalCareType = params.hospitalCareType;
+      this.admissionId = params.admissionId;
     });
+    this.hospitalCareType = this.initialHospitalCareType;
   }
 
   modifyPatient() {
@@ -52,9 +56,12 @@ export class ModifyPage implements OnInit {
         this.patientName,
         this.firstSurname,
         this.secondSurname,
-        this.healthCardIdentifier,
-        this.hospitalCareType
+        this.healthCardIdentifier
       );
+      if (this.hospitalCareType !== this.initialHospitalCareType) {
+        this.api.modifyAdmission(this.patientId);
+        this.initialHospitalCareType = this.hospitalCareType;
+      }
       this.presentToastModifiedPatient();
     }
   }

@@ -24,6 +24,7 @@ export class PatientInfoPage implements OnInit {
   secondSurname: string;
   healthCardIdentifier: string;
   hospitalCareType: string;
+  admissionId: string;
 
   constructor(
     public api: ApiService,
@@ -42,6 +43,7 @@ export class PatientInfoPage implements OnInit {
       this.secondSurname = params.secondSurname;
       this.healthCardIdentifier = params.healthCardIdentifier;
       this.hospitalCareType = params.hospitalCareType;
+      this.admissionId = params.admissionId;
     });
 
     if (this.secondSurname === 'undefined') {
@@ -71,7 +73,7 @@ export class PatientInfoPage implements OnInit {
     if (this.selectedState == null) {
       this.presentToastErrorPostGenericState();
     } else {
-      this.api.postGenericState(this.patientId, this.selectedState.stateId);
+      this.api.postGenericState(this.admissionId, this.selectedState.stateId);
       this.presentStateSent();
     }
   }
@@ -80,7 +82,7 @@ export class PatientInfoPage implements OnInit {
     if (this.stateNameInput == null || this.stateNameInput === '') {
       this.presentToastErrorPostCustomState();
     } else {
-      this.api.postCustomState(this.patientId, this.stateNameInput);
+      this.api.postCustomState(this.admissionId, this.stateNameInput);
       this.presentStateSent();
     }
   }
@@ -89,7 +91,7 @@ export class PatientInfoPage implements OnInit {
     this.router.navigate([
       'patient-info/states',
       {
-        patientId: this.patientId,
+        admissionId: this.admissionId,
       },
     ]);
   }

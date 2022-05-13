@@ -18,35 +18,35 @@ export class ApiService {
     );
   }
 
-  getAllStates(patientId) {
-    return this.http.get('http://localhost:8080/states/patient/' + patientId);
+  getAllStates(admissionId) {
+    return this.http.get(
+      'http://localhost:8080/states/admission/' + admissionId
+    );
   }
 
   getAllGenStates() {
-    return this.http.get('http://localhost:8080/states/generic');
+    return this.http.get('http://localhost:8080/states/generic/ca');
   }
 
-  postGenericState(patientId, stateId) {
+  postGenericState(admissionId, stateId) {
     return this.http
       .post(
         'http://localhost:8080/state/generic/' +
           stateId +
-          '/patient/' +
-          patientId,
+          '/admission/' +
+          admissionId,
         null
       )
       .toPromise();
   }
 
-  postCustomState(patientId, stateName) {
+  postCustomState(admissionId, stateName) {
     return this.http
       .post(
-        'http://localhost:8080/state/custom/patient/' + patientId,
+        'http://localhost:8080/state/custom/admission/' + admissionId,
         JSON.parse(
-          '{ "stateName": "' +
+          '{ "translatedText": "' +
             stateName +
-            '", "startTime": "' +
-            '2022-05-08T08:04:33.000+00:00' +
             '", "stateType": "' +
             'personalitzat" }'
         )
@@ -59,8 +59,7 @@ export class ApiService {
     patientName,
     firstSurname,
     secondSurname,
-    healthCardIdentifier,
-    hospitalCareType
+    healthCardIdentifier
   ) {
     return this.http
       .post(
@@ -74,8 +73,6 @@ export class ApiService {
             firstSurname +
             '", "secondSurname": "' +
             secondSurname +
-            '", "hospitalCareType": "' +
-            hospitalCareType +
             '", "healthCardIdentifier": "' +
             healthCardIdentifier +
             '"  }'
@@ -88,8 +85,7 @@ export class ApiService {
     patientName,
     patientFirstSurname,
     patientSecondSurname,
-    healthCardIdentifier,
-    healthCareType
+    healthCardIdentifier
   ) {
     return this.http
       .post(
@@ -101,8 +97,6 @@ export class ApiService {
             patientFirstSurname +
             '", "secondSurname": "' +
             patientSecondSurname +
-            '", "hospitalCareType": "' +
-            healthCareType +
             '", "healthCardIdentifier": "' +
             healthCardIdentifier +
             '"  }'
@@ -115,5 +109,31 @@ export class ApiService {
           }
         })
       );
+  }
+
+  postAdmission(hospitalCareType, patientId) {
+    return this.http
+      .post(
+        'http://localhost:8080/admission/patient/' + patientId,
+        JSON.parse('{  "hospitalCareType": "' + hospitalCareType + '"  }')
+      )
+      .toPromise();
+  }
+
+  getAdmissionByPatientId(patientId) {
+    return this.http
+      .get('http://localhost:8080/admission/active/patient/' + patientId)
+      .pipe(
+        catchError((error) => {
+          if (error.status === 404 || error.status === 500) {
+            return error;
+          }
+        })
+      );
+  }
+  modifyAdmission(patientId) {
+    return this.http
+      .post('http://localhost:8080/admission/type/patient/' + patientId, null)
+      .toPromise();
   }
 }
