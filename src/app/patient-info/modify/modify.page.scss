@@ -10,6 +10,11 @@ ion-header {
   }
 }
 
+ion-item {
+  --background: transparent !important;
+  color: black;
+}
+
 ion-content {
   --ion-background-color: #ffffff;
 }

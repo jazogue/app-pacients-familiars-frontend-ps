@@ -25,6 +25,13 @@ ion-row {
 
 ion-card {
   box-shadow: none !important;
+  background-color: #ffffff;
+  ion-text {
+    color: black;
+  }
+  ion-item {
+    --background: transparent !important;
+  }
 }
 .searchButton {
   --border-radius: 0px;
@@ -40,4 +47,7 @@ ion-input {
 .underline {
   --border-color: var(--ion-color-primary);
   --highlight-background: var(--ion-color-secondary);
+  .item-content {
+    background-color: transparent !important;
+  }
 }

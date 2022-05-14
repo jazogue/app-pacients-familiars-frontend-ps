@@ -33,6 +33,11 @@ ion-card {
   text-transform: none;
 }
 
+ion-item {
+  --background: transparent !important;
+  color: black;
+}
+
 ion-input {
   --placeholder-color: var(--ion-color-primary);
   color: var(--ion-color-primary);

@@ -77,6 +77,20 @@
                   >
                 </ion-select>
               </ion-item>
+              <ion-item class="underline">
+                <ion-select
+                  placeholder="Selecciona la localització (opcional)"
+                  okText="Acceptar"
+                  cancelText="Cancel·lar"
+                  [(ngModel)]="selectedLocation"
+                >
+                  <ion-select-option
+                    [value]="location"
+                    *ngFor="let location of locations"
+                    >{{location.locationName}}</ion-select-option
+                  >
+                </ion-select>
+              </ion-item>
               <ion-button
                 class="editButton"
                 size="medium"
@@ -91,10 +105,24 @@
           </div>
           <div *ngIf="newStateType === 'personalitzat'">
             <ion-text color="dark">
-              <h5>Estat personalitzable:</h5>
+              <h5>Introdueix l'estat personalitzable:</h5>
             </ion-text>
             <ion-item class="underline">
               <ion-input type="text" [(ngModel)]="stateNameInput"></ion-input>
+            </ion-item>
+            <ion-item class="underline">
+              <ion-select
+                placeholder="Selecciona la localització (opcional)"
+                okText="Acceptar"
+                cancelText="Cancel·lar"
+                [(ngModel)]="selectedLocation"
+              >
+                <ion-select-option
+                  [value]="location"
+                  *ngFor="let location of locations"
+                  >{{location.locationName}}</ion-select-option
+                >
+              </ion-select>
             </ion-item>
             <ion-button
               class="editButton"

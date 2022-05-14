@@ -15,7 +15,7 @@ export class StatesPage implements OnInit {
 
   ngOnInit() {
     this.admissionId = this.activatedRoute.snapshot.paramMap.get('admissionId');
-    this.api.getAllStates(this.admissionId).subscribe((result) => {
+    this.api.getAllStates(this.admissionId, 'ca').subscribe((result) => {
       this.initialStates = result;
     });
   }

@@ -18,9 +18,12 @@ export class ApiService {
     );
   }
 
-  getAllStates(admissionId) {
+  getAllStates(admissionId, idiom) {
     return this.http.get(
-      'http://localhost:8080/states/admission/' + admissionId
+      'http://localhost:8080/states/admission/' +
+        admissionId +
+        '/idiom/' +
+        idiom
     );
   }
 
@@ -28,7 +31,7 @@ export class ApiService {
     return this.http.get('http://localhost:8080/states/generic/ca');
   }
 
-  postGenericState(admissionId, stateId) {
+  postGenericState(admissionId, stateId, locationId) {
     return this.http
       .post(
         'http://localhost:8080/state/generic/' +
@@ -40,7 +43,7 @@ export class ApiService {
       .toPromise();
   }
 
-  postCustomState(admissionId, stateName) {
+  postCustomState(admissionId, stateName, locationId) {
     return this.http
       .post(
         'http://localhost:8080/state/custom/admission/' + admissionId,
@@ -48,7 +51,10 @@ export class ApiService {
           '{ "translatedText": "' +
             stateName +
             '", "stateType": "' +
-            'personalitzat" }'
+            'personalitzat" ' +
+            ', "location": "' +
+            locationId +
+            '" }'
         )
       )
       .toPromise();
@@ -131,9 +137,14 @@ export class ApiService {
         })
       );
   }
+
   modifyAdmission(patientId) {
     return this.http
       .post('http://localhost:8080/admission/type/patient/' + patientId, null)
       .toPromise();
+  }
+
+  getLocations() {
+    return this.http.get('http://localhost:8080/locations');
   }
 }

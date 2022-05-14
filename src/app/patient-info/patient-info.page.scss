@@ -22,7 +22,18 @@ ion-row {
   align-items: center;
   justify-content: center;
   height: 100%;
-  margin-top: 30px;
+  margin-top: 20px;
+}
+
+ion-item {
+  margin-top: 10px;
+  --background: transparent !important;
+}
+
+ion-input {
+  --placeholder-color: var(--ion-color-primary);
+  color: var(--ion-color-primary);
+  caret-color: var(--ion-color-secondary);
 }
 
 .editButtonCol {

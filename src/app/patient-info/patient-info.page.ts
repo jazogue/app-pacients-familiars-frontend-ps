@@ -17,7 +17,9 @@ export class PatientInfoPage implements OnInit {
   patientId: string;
   patient: any;
   genStates: any = [];
+  locations: any = [];
   selectedState: any = null;
+  selectedLocation: any = null;
   stateNameInput: string;
   patientName: string;
   firstSurname: string;
@@ -53,6 +55,10 @@ export class PatientInfoPage implements OnInit {
     this.api.getAllGenStates().subscribe((result) => {
       this.genStates = result;
     });
+
+    this.api.getLocations().subscribe((result) => {
+      this.locations = result;
+    });
   }
 
   goToModifyPatient() {
@@ -73,7 +79,11 @@ export class PatientInfoPage implements OnInit {
     if (this.selectedState == null) {
       this.presentToastErrorPostGenericState();
     } else {
-      this.api.postGenericState(this.admissionId, this.selectedState.stateId);
+      this.api.postGenericState(
+        this.admissionId,
+        this.selectedState.stateId,
+        this.selectedLocation.locationId
+      );
       this.presentStateSent();
     }
   }
@@ -82,7 +92,11 @@ export class PatientInfoPage implements OnInit {
     if (this.stateNameInput == null || this.stateNameInput === '') {
       this.presentToastErrorPostCustomState();
     } else {
-      this.api.postCustomState(this.admissionId, this.stateNameInput);
+      this.api.postCustomState(
+        this.admissionId,
+        this.stateNameInput,
+        this.selectedLocation.locationId
+      );
       this.presentStateSent();
     }
   }
