@@ -30,8 +30,7 @@ ion-item {
   --background: transparent !important;
 }
 
-ion-input {
-  --placeholder-color: var(--ion-color-primary);
+ion-input ion-select {
   color: var(--ion-color-primary);
   caret-color: var(--ion-color-secondary);
 }

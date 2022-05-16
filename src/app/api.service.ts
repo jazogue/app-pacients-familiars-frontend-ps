@@ -144,6 +144,12 @@ export class ApiService {
       .toPromise();
   }
 
+  addFinishDate(admissionId) {
+    return this.http
+      .post('http://localhost:8080/admission/finishDate/' + admissionId, null)
+      .toPromise();
+  }
+
   getLocations() {
     return this.http.get('http://localhost:8080/locations');
   }

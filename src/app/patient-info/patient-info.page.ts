@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
-import { LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
@@ -34,7 +34,8 @@ export class PatientInfoPage implements OnInit {
     public loadingController: LoadingController,
     public toastController: ToastController,
     private router: Router,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -108,6 +109,45 @@ export class PatientInfoPage implements OnInit {
         admissionId: this.admissionId,
       },
     ]);
+  }
+
+  finishTracking() {
+    this.api.addFinishDate(this.admissionId);
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      header: 'Eliminar seguiment',
+      message:
+        'Està segur de que vol eliminar el seguiment del pacient amb identificador <strong>' +
+        this.patientId +
+        '</strong>',
+      buttons: [
+        {
+          text: 'Cancel·lar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: () => {
+            console.log('Cancel');
+          },
+        },
+        {
+          text: 'Confirmar',
+          id: 'confirm-button',
+          handler: () => {
+            this.finishTracking();
+            this.router.navigate([
+              '../home',
+              {
+                admissionId: this.admissionId,
+              },
+            ]);
+          },
+        },
+      ],
+    });
+    await alert.present();
   }
 
   private async presentLoadingWithOptions() {

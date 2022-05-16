@@ -80,8 +80,8 @@ export class AddPatientPage implements OnInit {
   private async presentToastNotAddedPatient() {
     const toast = await this.toastController.create({
       message:
-        'Pacient no afegit, número de targeta sanitaria ja existent i actiu',
-      duration: 2000,
+        'Pacient no afegit, número de targeta sanitaria ja existent i actiu. Abans has de cancel·lar el seguiment actiu d`aquest pacient.',
+      duration: 4000,
       position: 'middle',
     });
     toast.present();

@@ -23,12 +23,12 @@ export class HomePage {
   ) {}
 
   directToPatientInfo() {
-    this.api.getAdmissionByPatientId(this.searchInput).subscribe(
-      (result: any) => {
-        this.admission = result;
-        this.api.getPatientByAnyCriteria(this.searchInput).subscribe(
-          (result2) => {
-            this.patient = result2;
+    this.api.getPatientByAnyCriteria(this.searchInput).subscribe(
+      (result2) => {
+        this.patient = result2;
+        this.api.getAdmissionByPatientId(this.patient.patientId).subscribe(
+          (result: any) => {
+            this.admission = result;
             const navigationExtras: NavigationExtras = {
               queryParams: {
                 patientId: this.patient.patientId,
@@ -43,12 +43,12 @@ export class HomePage {
             this.navCtrl.navigateForward(['patient-info'], navigationExtras);
           },
           (err) => {
-            this.presentToastErrorSearchPatientId();
+            this.presentToastErrorSearchAdmission();
           }
         );
       },
       (err) => {
-        this.presentToastErrorSearchAdmission();
+        this.presentToastErrorSearchPatientId();
       }
     );
   }

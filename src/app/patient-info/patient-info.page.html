@@ -13,7 +13,7 @@
       <ion-card-content>
         <ion-row>
           <ion-text>
-            <h1>Pacient amb ID: {{patientId}}</h1>
+            <h1>Pacient amb ID: <font color="#3e4a74">{{patientId}}</font></h1>
           </ion-text>
         </ion-row>
         <ion-row>
@@ -32,13 +32,44 @@
             ></ion-button>
           </ion-col>
           <ion-text>
-            <h5>Nom: {{patientName}}</h5>
-            <h5>Cognoms: {{firstSurname}} {{secondSurname}}</h5>
-            <h5>Número de targeta sanitària: {{healthCardIdentifier}}</h5>
-            <h5>Tipus d'atenció sanitària: {{hospitalCareType}}</h5>
+            <h5>
+              Nom:
+              <font color="#3e4a74"
+                >{{patientName.charAt(0).toUpperCase() +
+                patientName.slice(1)}}</font
+              >
+            </h5>
+            <h5>
+              Cognoms:<font color="#3e4a74">
+                {{firstSurname.charAt(0).toUpperCase() + firstSurname.slice(1)}}
+                {{secondSurname.charAt(0).toUpperCase()+
+                secondSurname.slice(1)}}</font
+              >
+            </h5>
+            <h5>
+              Número de targeta sanitària:<font color="#3e4a74">
+                {{healthCardIdentifier.toUpperCase()}}</font
+              >
+            </h5>
+            <h5>
+              Tipus d'atenció sanitària:<font color="#3e4a74">
+                {{hospitalCareType.charAt(0).toUpperCase()+hospitalCareType.slice(1)}}</font
+              >
+            </h5>
           </ion-text>
         </ion-row>
-
+        <ion-row>
+          <ion-button
+            class="editButton"
+            size="medium"
+            color="primary-color"
+            fill="outline"
+            (click)="presentAlertConfirm()"
+          >
+            Finalitzar seguiment del pacient
+            <ion-icon slot="end" name="close-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-row>
         <ion-row>
           <ion-text color="dark">
             <h2>Afegir un estat nou al pacient:</h2>
@@ -108,7 +139,11 @@
               <h5>Introdueix l'estat personalitzable:</h5>
             </ion-text>
             <ion-item class="underline">
-              <ion-input type="text" [(ngModel)]="stateNameInput"></ion-input>
+              <ion-input
+                type="text"
+                placeholder="Introdueixi el missatge personalitzat"
+                [(ngModel)]="stateNameInput"
+              ></ion-input>
             </ion-item>
             <ion-item class="underline">
               <ion-select
