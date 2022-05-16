@@ -70,8 +70,8 @@
               cancelText="Cancel·lar"
               [(ngModel)]="healthCareType"
             >
-              <ion-select-option value="quirurgic">Quirurgic</ion-select-option>
-              <ion-select-option value="urgencies">Urgencies</ion-select-option>
+              <ion-select-option value="quirurgic">Quirúrgic</ion-select-option>
+              <ion-select-option value="urgencies">Urgències</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-row>
@@ -89,10 +89,31 @@
             <ion-icon slot="end" name="chevron-forward"></ion-icon>
           </ion-button>
         </ion-row>
-        <div *ngIf="showId">
+        <div *ngIf="showCreatedPatientId">
           <ion-row>
             <ion-text>
-              <h5>El pacient creat té el ID: {{patientId}}</h5>
+              <h2>
+                El pacient creat té el identificador:
+                <strong
+                  ><font color="#3e4a74"
+                    >{{patientId.toUpperCase()}}</font
+                  ></strong
+                >
+              </h2>
+            </ion-text>
+          </ion-row>
+        </div>
+        <div *ngIf="showCreatedAdmissionId">
+          <ion-row>
+            <ion-text>
+              <h2>
+                Seguiment creat pel pacient amb identificador:
+                <strong
+                  ><font color="#3e4a74"
+                    >{{patientId.toUpperCase()}}</font
+                  ></strong
+                >
+              </h2>
             </ion-text>
           </ion-row>
         </div>

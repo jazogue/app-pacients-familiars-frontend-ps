@@ -23,7 +23,7 @@ export class HomePage {
   ) {}
 
   directToPatientInfo() {
-    this.api.getPatientByAnyCriteria(this.searchInput).subscribe(
+    this.api.getPatientByAnyCriteria(this.searchInput.toLowerCase()).subscribe(
       (result2) => {
         this.patient = result2;
         this.api.getAdmissionByPatientId(this.patient.patientId).subscribe(

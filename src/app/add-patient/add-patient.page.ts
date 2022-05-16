@@ -14,7 +14,8 @@ export class AddPatientPage implements OnInit {
   healthCardIdentifier: string;
   healthCareType: string;
   patientId = '';
-  showId = false;
+  showCreatedPatientId = false;
+  showCreatedAdmissionId = false;
   public response: any;
 
   constructor(
@@ -48,12 +49,27 @@ export class AddPatientPage implements OnInit {
           (result: any) => {
             this.presentToastAddedPatient();
             this.patientId = result.id;
-            this.showId = true;
+            this.showCreatedPatientId = true;
             this.api.postAdmission(this.healthCareType, this.patientId);
           },
           (err) => {
-            this.presentToastNotAddedPatient();
-            this.showId = false;
+            this.api
+              .getPatientByAnyCriteria(this.healthCardIdentifier)
+              .subscribe((result2: any) => {
+                this.api.getAdmissionByPatientId(result2.patientId).subscribe(
+                  (result3: any) => {
+                    this.presentToastNotAddedPatient();
+                    this.showCreatedPatientId = false;
+                    this.showCreatedAdmissionId = false;
+                  },
+                  (err2) => {
+                    this.patientId = result2.patientId;
+                    this.showCreatedAdmissionId = true;
+                    this.api.postAdmission(this.healthCareType, this.patientId);
+                    this.presentToastAddedAdmission();
+                  }
+                );
+              });
           }
         );
     }
@@ -71,6 +87,15 @@ export class AddPatientPage implements OnInit {
   private async presentToastAddedPatient() {
     const toast = await this.toastController.create({
       message: 'Pacient afegit correctament',
+      duration: 2000,
+      position: 'middle',
+    });
+    toast.present();
+  }
+
+  private async presentToastAddedAdmission() {
+    const toast = await this.toastController.create({
+      message: 'Creat nou seguiment per al pacient introduït',
       duration: 2000,
       position: 'middle',
     });
