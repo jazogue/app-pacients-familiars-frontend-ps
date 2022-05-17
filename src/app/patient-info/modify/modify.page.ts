@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ApiService } from '../../api.service';
+import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-modify',
@@ -17,10 +20,13 @@ export class ModifyPage implements OnInit {
   initialHospitalCareType: string;
   hospitalCareType: string;
   admissionId: string;
+  savedNewInfo = false;
+
   constructor(
     public api: ApiService,
     public activatedRoute: ActivatedRoute,
-    public toastController: ToastController
+    public toastController: ToastController,
+    public navCtrl: NavController
   ) {}
 
   ngOnInit() {
@@ -63,6 +69,25 @@ export class ModifyPage implements OnInit {
         this.initialHospitalCareType = this.hospitalCareType;
       }
       this.presentToastModifiedPatient();
+      this.savedNewInfo = true;
+    }
+  }
+
+  goBackWithParams() {
+    if (this.savedNewInfo) {
+      const navigationExtras: NavigationExtras = {
+        queryParams: {
+          patientName: this.patientName,
+          firstSurname: this.firstSurname,
+          secondSurname: this.secondSurname,
+          healthCardIdentifier: this.healthCardIdentifier,
+          admissionId: this.admissionId,
+          hospitalCareType: this.hospitalCareType,
+        },
+      };
+      this.navCtrl.navigateBack(['patient-info'], navigationExtras);
+    } else {
+      window.history.go(-1);
     }
   }
 
