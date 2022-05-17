@@ -5,6 +5,7 @@ import { ToastController } from '@ionic/angular';
 
 import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -19,10 +20,12 @@ export class HomePage {
     public api: ApiService,
     private router: Router,
     public toastController: ToastController,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public loadingController: LoadingController
   ) {}
 
   directToPatientInfo() {
+    this.presentLoading();
     this.api.getPatientByAnyCriteria(this.searchInput.toLowerCase()).subscribe(
       (result2) => {
         this.patient = result2;
@@ -55,6 +58,14 @@ export class HomePage {
 
   directToCreatePatient() {
     this.router.navigate(['/add-patient']);
+  }
+
+  private async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Cercant el pacient...',
+      duration: 1000,
+    });
+    await loading.present();
   }
 
   private async presentToastErrorSearchPatientId() {

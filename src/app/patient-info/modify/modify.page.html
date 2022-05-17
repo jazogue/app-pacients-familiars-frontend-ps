@@ -19,46 +19,59 @@
         </ion-text>
         <ion-row>
           <ion-text>
-            <h5>Introdueix el nom.</h5>
-          </ion-text>
-          <ion-item class="underline">
-            <ion-input type="text" [(ngModel)]="patientName"></ion-input>
-          </ion-item>
-        </ion-row>
-
-        <ion-row>
-          <ion-text>
-            <h5>Introdueix el primer cognom.</h5>
-          </ion-text>
-          <ion-item class="underline">
-            <ion-input type="text" [(ngModel)]="firstSurname"></ion-input>
-          </ion-item>
-        </ion-row>
-
-        <ion-row>
-          <ion-text>
-            <h5>Introdueix el segon cognom.</h5>
-          </ion-text>
-          <ion-item class="underline">
-            <ion-input type="text" [(ngModel)]="secondSurname"></ion-input>
-          </ion-item>
-        </ion-row>
-
-        <ion-row>
-          <ion-text color="dark">
-            <h5>Introdueix el número de targeta sanitària.</h5>
+            <h5>Introdueix el nom *</h5>
           </ion-text>
           <ion-item class="underline">
             <ion-input
               type="text"
-              [(ngModel)]="healthCardIdentifier"
+              [(ngModel)]="patientName"
+              class="ion-text-center"
+            ></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-text>
+            <h5>Introdueix el primer cognom *</h5>
+          </ion-text>
+          <ion-item class="underline">
+            <ion-input
+              type="text"
+              [(ngModel)]="firstSurname"
+              class="ion-text-center"
+            ></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-text>
+            <h5>Introdueix el segon cognom</h5>
+          </ion-text>
+          <ion-item class="underline">
+            <ion-input
+              type="text"
+              [(ngModel)]="secondSurname"
+              class="ion-text-center"
             ></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row>
           <ion-text color="dark">
-            <h5>Selecciona el tipus d'atenció sanitària a rebre.</h5>
+            <h5>Introdueix el número de targeta sanitària *</h5>
+          </ion-text>
+          <ion-item class="underline">
+            <ion-input
+              type="text"
+              [(ngModel)]="healthCardIdentifier"
+              class="ion-text-center"
+            ></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-text color="dark">
+            <h5>Selecciona el tipus d'atenció sanitària a rebre *</h5>
           </ion-text>
           <ion-item class="underline">
             <ion-select
@@ -67,8 +80,8 @@
               cancelText="Cancel·lar"
               [(ngModel)]="hospitalCareType"
             >
-              <ion-select-option value="quirurgic">Quirurgic</ion-select-option>
-              <ion-select-option value="urgencies">Urgencies</ion-select-option>
+              <ion-select-option value="quirurgic">Quirúrgic</ion-select-option>
+              <ion-select-option value="urgencies">Urgències</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-row>

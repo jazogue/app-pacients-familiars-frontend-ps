@@ -43,14 +43,23 @@
             </h5>
             <h5>
               Número de targeta sanitària:<font color="#3e4a74">
-                {{healthCardIdentifier}}</font
+                {{healthCardIdentifier.toUpperCase()}}</font
               >
             </h5>
-            <h5>
-              Tipus d'atenció sanitària:<font color="#3e4a74">
-                {{hospitalCareType}}</font
-              >
-            </h5>
+            <div *ngIf="hospitalCareType === 'urgencies'">
+              <h5>
+                Tipus d'atenció sanitària:<font color="#3e4a74">
+                  Urgències</font
+                >
+              </h5>
+            </div>
+            <div *ngIf="hospitalCareType === 'quirurgic'">
+              <h5>
+                Tipus d'atenció sanitària:<font color="#3e4a74">
+                  Quirúrgic</font
+                >
+              </h5>
+            </div>
           </ion-text>
         </ion-row>
         <ion-row>

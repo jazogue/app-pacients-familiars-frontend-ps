@@ -19,7 +19,11 @@
             <h5>Introdueix el nom *</h5>
           </ion-text>
           <ion-item class="underline">
-            <ion-input type="text" [(ngModel)]="patientName"></ion-input>
+            <ion-input
+              type="text"
+              [(ngModel)]="patientName"
+              class="ion-text-center"
+            ></ion-input>
           </ion-item>
         </ion-row>
 
@@ -31,6 +35,7 @@
             <ion-input
               type="text"
               [(ngModel)]="patientFirstSurname"
+              class="ion-text-center"
             ></ion-input>
           </ion-item>
         </ion-row>
@@ -43,6 +48,7 @@
             <ion-input
               type="text"
               [(ngModel)]="patientSecondSurname"
+              class="ion-text-center"
             ></ion-input>
           </ion-item>
         </ion-row>
@@ -55,6 +61,7 @@
             <ion-input
               type="text"
               [(ngModel)]="healthCardIdentifier"
+              class="ion-text-center"
             ></ion-input>
           </ion-item>
         </ion-row>

@@ -4,7 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { ApiService } from '../../api.service';
 import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
-import { TouchSequence } from 'selenium-webdriver';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-modify',
@@ -26,7 +26,8 @@ export class ModifyPage implements OnInit {
     public api: ApiService,
     public activatedRoute: ActivatedRoute,
     public toastController: ToastController,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public loadingController: LoadingController
   ) {}
 
   ngOnInit() {
@@ -57,6 +58,7 @@ export class ModifyPage implements OnInit {
     } else if (this.healthCardIdentifier.length !== 14) {
       this.presentToastHealthCardIdentifier();
     } else {
+      this.presentLoading();
       this.api.modifyPatient(
         this.patientId,
         this.patientName,
@@ -64,12 +66,15 @@ export class ModifyPage implements OnInit {
         this.secondSurname,
         this.healthCardIdentifier
       );
+      console.log(this.patientId);
       if (this.hospitalCareType !== this.initialHospitalCareType) {
         this.api.modifyAdmission(this.patientId);
         this.initialHospitalCareType = this.hospitalCareType;
       }
-      this.presentToastModifiedPatient();
       this.savedNewInfo = true;
+      setTimeout(() => {
+        this.presentToastModifiedPatient();
+      }, 2000);
     }
   }
 
@@ -77,6 +82,7 @@ export class ModifyPage implements OnInit {
     if (this.savedNewInfo) {
       const navigationExtras: NavigationExtras = {
         queryParams: {
+          patientId: this.patientId,
           patientName: this.patientName,
           firstSurname: this.firstSurname,
           secondSurname: this.secondSurname,
@@ -89,6 +95,14 @@ export class ModifyPage implements OnInit {
     } else {
       window.history.go(-1);
     }
+  }
+
+  private async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Modificant dades del pacient...',
+      duration: 1000,
+    });
+    await loading.present();
   }
 
   private async presentToastIncompleteForm() {

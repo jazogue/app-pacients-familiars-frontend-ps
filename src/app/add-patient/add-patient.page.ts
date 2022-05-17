@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { ApiService } from '../api.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-patient',
@@ -20,7 +21,8 @@ export class AddPatientPage implements OnInit {
 
   constructor(
     public api: ApiService,
-    public toastController: ToastController
+    public toastController: ToastController,
+    public loadingController: LoadingController
   ) {}
 
   ngOnInit() {}
@@ -38,6 +40,7 @@ export class AddPatientPage implements OnInit {
     ) {
       this.presentToastIncompleteForm();
     } else {
+      this.presentLoading();
       this.api
         .postPatient(
           this.patientName,
@@ -73,6 +76,14 @@ export class AddPatientPage implements OnInit {
           }
         );
     }
+  }
+
+  private async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Creant pacient...',
+      duration: 1000,
+    });
+    await loading.present();
   }
 
   private async presentToastIncompleteForm() {
