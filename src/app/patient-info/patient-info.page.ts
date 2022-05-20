@@ -6,6 +6,11 @@ import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
+import {
+  IonicSelectableComponent,
+  IonicSelectableModule,
+} from 'ionic-selectable';
+import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
 
 @Component({
   selector: 'app-patient-info',
@@ -27,6 +32,7 @@ export class PatientInfoPage implements OnInit {
   healthCardIdentifier: string;
   hospitalCareType: string;
   admissionId: string;
+  showPatientInfo = false;
 
   constructor(
     public api: ApiService,
@@ -71,9 +77,14 @@ export class PatientInfoPage implements OnInit {
         secondSurname: this.secondSurname,
         healthCardIdentifier: this.healthCardIdentifier,
         hospitalCareType: this.hospitalCareType,
+        admissionId: this.admissionId,
       },
     };
     this.navCtrl.navigateForward(['patient-info/modify'], navigationExtras);
+  }
+
+  displayPatientInfo() {
+    this.showPatientInfo = !this.showPatientInfo;
   }
 
   postGenericState() {

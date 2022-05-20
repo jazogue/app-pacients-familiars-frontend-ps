@@ -18,11 +18,18 @@ ion-grid {
   height: 100%;
 }
 
-ion-row {
+.normalSpace {
   align-items: center;
   justify-content: center;
   height: 100%;
   margin-top: 20px;
+}
+
+.lessSpace {
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-top: -15px;
 }
 
 ion-item {
@@ -35,14 +42,21 @@ ion-input ion-select {
   caret-color: var(--ion-color-secondary);
 }
 
-.editButtonCol {
+.displayPatientInfoButtonCol {
   margin-left: -50px;
 }
 
-ion-card {
+.mainCard {
   background-color: #ffffff;
   box-shadow: none !important;
 }
+
+.infoCard {
+  background-color: #ffffff;
+  box-shadow: 0 3px 3px var(--ion-color-primary);
+  border-radius: 0px;
+}
+
 .editButton {
   --border-radius: 0px;
   text-transform: none;

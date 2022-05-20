@@ -9,60 +9,81 @@
 
 <ion-content padding>
   <ion-grid class="ion-text-center">
-    <ion-card class="content-card">
+    <ion-card class="mainCard">
       <ion-card-content>
-        <ion-row>
+        <ion-row class="normalSpace">
           <ion-text>
-            <h1>Pacient amb ID: <font color="#3e4a74">{{patientId}}</font></h1>
+            <h1>
+              Pacient amb identificador:
+              <font color="#3e4a74">{{patientId}}</font>
+            </h1>
           </ion-text>
         </ion-row>
-        <ion-row>
+        <ion-row class="normalSpace">
           <ion-col size="9">
             <ion-text>
               <h2>Informació del pacient</h2>
             </ion-text>
           </ion-col>
-          <ion-col class="editButtonCol">
+          <ion-col class="displayPatientInfoButtonCol">
             <ion-button
               class="editButton"
               color="primary-color"
               fill="outline"
-              (click)="goToModifyPatient()"
-              ><ion-icon name="create-outline"></ion-icon
+              (click)="displayPatientInfo()"
+              ><ion-icon name="caret-down-outline"></ion-icon
             ></ion-button>
           </ion-col>
-          <ion-text>
-            <h5>
-              Nom:
-              <font color="#3e4a74">{{patientName}}</font>
-            </h5>
-            <h5>
-              Cognoms:<font color="#3e4a74">
-                {{firstSurname}} {{secondSurname}}</font
-              >
-            </h5>
-            <h5>
-              Número de targeta sanitària:<font color="#3e4a74">
-                {{healthCardIdentifier.toUpperCase()}}</font
-              >
-            </h5>
-            <div *ngIf="hospitalCareType === 'urgencies'">
-              <h5>
-                Tipus d'atenció sanitària:<font color="#3e4a74">
-                  Urgències</font
-                >
-              </h5>
-            </div>
-            <div *ngIf="hospitalCareType === 'quirurgic'">
-              <h5>
-                Tipus d'atenció sanitària:<font color="#3e4a74">
-                  Quirúrgic</font
-                >
-              </h5>
-            </div>
-          </ion-text>
         </ion-row>
-        <ion-row>
+        <ion-row class="lessSpace">
+          <div *ngIf="showPatientInfo===true">
+            <ion-col>
+              <ion-card class="infoCard">
+                <ion-card-content>
+                  <ion-text>
+                    <h5>
+                      Nom:
+                      <font color="#3e4a74">{{patientName}}</font>
+                    </h5>
+                    <h5>
+                      Cognoms:<font color="#3e4a74">
+                        {{firstSurname}} {{secondSurname}}</font
+                      >
+                    </h5>
+                    <h5>
+                      Número de targeta sanitària:<font color="#3e4a74">
+                        {{healthCardIdentifier.toUpperCase()}}</font
+                      >
+                    </h5>
+                    <div *ngIf="hospitalCareType === 'urgencies'">
+                      <h5>
+                        Tipus d'atenció sanitària:<font color="#3e4a74">
+                          Urgències</font
+                        >
+                      </h5>
+                    </div>
+                    <div *ngIf="hospitalCareType === 'quirurgic'">
+                      <h5>
+                        Tipus d'atenció sanitària:<font color="#3e4a74">
+                          Quirúrgic</font
+                        >
+                      </h5>
+                    </div>
+                  </ion-text>
+                  <ion-button
+                    class="editButton"
+                    color="primary-color"
+                    fill="outline"
+                    (click)="goToModifyPatient()"
+                    ><ion-icon name="create-outline"></ion-icon
+                  ></ion-button>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </div>
+        </ion-row>
+
+        <ion-row class="normalSpace">
           <ion-button
             class="editButton"
             size="medium"
@@ -74,14 +95,16 @@
             <ion-icon slot="end" name="close-circle-outline"></ion-icon>
           </ion-button>
         </ion-row>
-        <ion-row>
+        <ion-row class="normalSpace">
           <ion-text color="dark">
             <h2>Afegir un estat nou al pacient:</h2>
             <h5>Tria un nou tipus d'estat:</h5>
           </ion-text>
+        </ion-row>
+        <ion-row class="normalSpace">
           <ion-item class="underline">
             <ion-select
-              placeholder="Selecciona un estat predefinit"
+              placeholder="Selecciona un tipus d'estat"
               okText="Acceptar"
               cancelText="Cancel·lar"
               [(ngModel)]="newStateType"
@@ -95,36 +118,38 @@
           </ion-item>
         </ion-row>
 
-        <ion-row>
+        <ion-row class="normalSpace">
           <div *ngIf="newStateType === 'generic'">
             <div>
               <ion-item class="underline">
-                <ion-select
+                <ionic-selectable
+                  item-content
                   placeholder="Selecciona un estat predefinit"
-                  okText="Acceptar"
-                  cancelText="Cancel·lar"
                   [(ngModel)]="selectedState"
+                  [items]="genStates"
+                  itemTextField="translatedText"
+                  [canSearch]="true"
+                  closeButtonText="Cancel·lar"
+                  searchPlaceholder="Selecciona un estat predefinit"
+                  [canClear]="true"
+                  clearButtonText="Eliminar selecció"
                 >
-                  <ion-select-option
-                    [value]="genState"
-                    *ngFor="let genState of genStates"
-                    >{{genState.translatedText}}</ion-select-option
-                  >
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
               <ion-item class="underline">
-                <ion-select
+                <ionic-selectable
+                  item-content
                   placeholder="Selecciona la localització (opcional)"
-                  okText="Acceptar"
-                  cancelText="Cancel·lar"
                   [(ngModel)]="selectedLocation"
+                  [items]="locations"
+                  itemTextField="locationName"
+                  [canSearch]="true"
+                  closeButtonText="Cancel·lar"
+                  searchPlaceholder="Selecciona la localització (opcional)"
+                  [canClear]="true"
+                  clearButtonText="Eliminar selecció"
                 >
-                  <ion-select-option
-                    [value]="location"
-                    *ngFor="let location of locations"
-                    >{{location.locationName}}</ion-select-option
-                  >
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
               <ion-button
                 class="editButton"
@@ -150,18 +175,19 @@
               ></ion-input>
             </ion-item>
             <ion-item class="underline">
-              <ion-select
+              <ionic-selectable
+                item-content
                 placeholder="Selecciona la localització (opcional)"
-                okText="Acceptar"
-                cancelText="Cancel·lar"
                 [(ngModel)]="selectedLocation"
+                [items]="locations"
+                itemTextField="locationName"
+                [canSearch]="true"
+                closeButtonText="Cancel·lar"
+                searchPlaceholder="Selecciona la localització (opcional)"
+                [canClear]="true"
+                clearButtonText="Eliminar selecció"
               >
-                <ion-select-option
-                  [value]="location"
-                  *ngFor="let location of locations"
-                  >{{location.locationName}}</ion-select-option
-                >
-              </ion-select>
+              </ionic-selectable>
             </ion-item>
             <ion-button
               class="editButton"
@@ -175,7 +201,7 @@
             </ion-button>
           </div>
         </ion-row>
-        <ion-row>
+        <ion-row class="normalSpace">
           <ion-button
             class="editButton"
             size="medium"

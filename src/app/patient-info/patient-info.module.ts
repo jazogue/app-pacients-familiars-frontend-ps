@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { PatientInfoPageRoutingModule } from './patient-info-routing.module';
 
 import { PatientInfoPage } from './patient-info.page';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PatientInfoPageRoutingModule
+    PatientInfoPageRoutingModule,
+    IonicSelectableModule,
   ],
-  declarations: [PatientInfoPage]
+  declarations: [PatientInfoPage],
 })
 export class PatientInfoPageModule {}

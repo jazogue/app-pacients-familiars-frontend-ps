@@ -39,8 +39,9 @@ export class AddPatientPage implements OnInit {
       this.healthCareType == null
     ) {
       this.presentToastIncompleteForm();
+    } else if (!this.healthCardNumberFormatCheck(this.healthCardIdentifier)) {
+      this.presentToastHealthCardIdentifierFormat();
     } else {
-      this.presentLoading();
       this.api
         .postPatient(
           this.patientName,
@@ -78,12 +79,11 @@ export class AddPatientPage implements OnInit {
     }
   }
 
-  private async presentLoading() {
-    const loading = await this.loadingController.create({
-      message: 'Creant pacient...',
-      duration: 1000,
-    });
-    await loading.present();
+  private healthCardNumberFormatCheck(cardNumber) {
+    const regexp = new RegExp(
+      '([A-Za-z]{4})+' + String.fromCharCode(92) + 'd{10}'
+    );
+    return regexp.test(cardNumber);
   }
 
   private async presentToastIncompleteForm() {
@@ -91,6 +91,17 @@ export class AddPatientPage implements OnInit {
       message: 'Falten camps per emplenar',
       duration: 2000,
       position: 'middle',
+      color: 'secondary',
+    });
+    toast.present();
+  }
+
+  private async presentToastHealthCardIdentifierFormat() {
+    const toast = await this.toastController.create({
+      message: 'Introduïu un número targeta de sanitària correcte',
+      duration: 2000,
+      position: 'middle',
+      color: 'secondary',
     });
     toast.present();
   }
@@ -100,6 +111,7 @@ export class AddPatientPage implements OnInit {
       message: 'Pacient afegit correctament',
       duration: 2000,
       position: 'middle',
+      color: 'primary',
     });
     toast.present();
   }
@@ -109,6 +121,7 @@ export class AddPatientPage implements OnInit {
       message: 'Creat nou seguiment per al pacient introduït',
       duration: 2000,
       position: 'middle',
+      color: 'primary',
     });
     toast.present();
   }
@@ -119,6 +132,7 @@ export class AddPatientPage implements OnInit {
         'Pacient no afegit, número de targeta sanitaria ja existent i actiu. Abans has de cancel·lar el seguiment actiu d`aquest pacient.',
       duration: 4000,
       position: 'middle',
+      color: 'secondary',
     });
     toast.present();
   }

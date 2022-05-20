@@ -55,7 +55,7 @@ export class ModifyPage implements OnInit {
       this.hospitalCareType == null
     ) {
       this.presentToastIncompleteForm();
-    } else if (this.healthCardIdentifier.length !== 14) {
+    } else if (!this.healthCardNumberFormatCheck(this.healthCardIdentifier)) {
       this.presentToastHealthCardIdentifier();
     } else {
       this.presentLoading();
@@ -66,7 +66,6 @@ export class ModifyPage implements OnInit {
         this.secondSurname,
         this.healthCardIdentifier
       );
-      console.log(this.patientId);
       if (this.hospitalCareType !== this.initialHospitalCareType) {
         this.api.modifyAdmission(this.patientId);
         this.initialHospitalCareType = this.hospitalCareType;
@@ -97,6 +96,13 @@ export class ModifyPage implements OnInit {
     }
   }
 
+  private healthCardNumberFormatCheck(cardNumber) {
+    const regexp = new RegExp(
+      '([A-Za-z]{4})+' + String.fromCharCode(92) + 'd{10}'
+    );
+    return regexp.test(cardNumber);
+  }
+
   private async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'Modificant dades del pacient...',
@@ -110,6 +116,7 @@ export class ModifyPage implements OnInit {
       message: 'Falten camps per emplenar',
       duration: 2000,
       position: 'middle',
+      color: 'secondary',
     });
     toast.present();
   }
@@ -119,6 +126,7 @@ export class ModifyPage implements OnInit {
         'El número de targeta sanitària és incorrecte, introduïu-lo novament',
       duration: 2000,
       position: 'middle',
+      color: 'secondary',
     });
     toast.present();
   }
@@ -127,6 +135,7 @@ export class ModifyPage implements OnInit {
       message: 'Pacient modificat correctament',
       duration: 2000,
       position: 'middle',
+      color: 'primary',
     });
     toast.present();
   }

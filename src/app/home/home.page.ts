@@ -25,35 +25,44 @@ export class HomePage {
   ) {}
 
   directToPatientInfo() {
-    this.presentLoading();
-    this.api.getPatientByAnyCriteria(this.searchInput.toLowerCase()).subscribe(
-      (result2) => {
-        this.patient = result2;
-        this.api.getAdmissionByPatientId(this.patient.patientId).subscribe(
-          (result: any) => {
-            this.admission = result;
-            const navigationExtras: NavigationExtras = {
-              queryParams: {
-                patientId: this.patient.patientId,
-                patientName: this.patient.patientName,
-                firstSurname: this.patient.firstSurname,
-                secondSurname: this.patient.secondSurname,
-                healthCardIdentifier: this.patient.healthCardIdentifier,
-                admissionId: this.admission.admissionId,
-                hospitalCareType: this.admission.hospitalCareType,
+    if (this.searchInput === '' || this.searchInput == null) {
+      this.presentToastErrorNoSearchInput();
+    } else {
+      this.presentLoading();
+      this.api
+        .getPatientByAnyCriteria(this.searchInput.toLowerCase())
+        .subscribe(
+          (result2) => {
+            this.patient = result2;
+            this.api.getAdmissionByPatientId(this.patient.patientId).subscribe(
+              (result: any) => {
+                this.admission = result;
+                const navigationExtras: NavigationExtras = {
+                  queryParams: {
+                    patientId: this.patient.patientId,
+                    patientName: this.patient.patientName,
+                    firstSurname: this.patient.firstSurname,
+                    secondSurname: this.patient.secondSurname,
+                    healthCardIdentifier: this.patient.healthCardIdentifier,
+                    admissionId: this.admission.admissionId,
+                    hospitalCareType: this.admission.hospitalCareType,
+                  },
+                };
+                this.navCtrl.navigateForward(
+                  ['patient-info'],
+                  navigationExtras
+                );
               },
-            };
-            this.navCtrl.navigateForward(['patient-info'], navigationExtras);
+              (err) => {
+                this.presentToastErrorSearchAdmission();
+              }
+            );
           },
           (err) => {
-            this.presentToastErrorSearchAdmission();
+            this.presentToastErrorSearchPatientId();
           }
         );
-      },
-      (err) => {
-        this.presentToastErrorSearchPatientId();
-      }
-    );
+    }
   }
 
   directToCreatePatient() {
@@ -68,11 +77,22 @@ export class HomePage {
     await loading.present();
   }
 
+  private async presentToastErrorNoSearchInput() {
+    const toast = await this.toastController.create({
+      message: 'Introdueix un codi de pacient o número de targeta sanitària',
+      duration: 2000,
+      position: 'middle',
+      color: 'secondary',
+    });
+    toast.present();
+  }
+
   private async presentToastErrorSearchPatientId() {
     const toast = await this.toastController.create({
       message: 'No s`ha trobat aquest pacient',
       duration: 2000,
       position: 'middle',
+      color: 'secondary',
     });
     toast.present();
   }
@@ -82,6 +102,7 @@ export class HomePage {
       message: 'No s`ha trobat cap admissió disponible amb aquest pacient',
       duration: 2000,
       position: 'middle',
+      color: 'secondary',
     });
     toast.present();
   }

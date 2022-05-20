@@ -12,6 +12,11 @@ ion-header {
 
 ion-content {
   --ion-background-color: #ffffff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 ion-grid {
