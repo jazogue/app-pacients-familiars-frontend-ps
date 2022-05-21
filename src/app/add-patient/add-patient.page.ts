@@ -9,20 +9,19 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./add-patient.page.scss'],
 })
 export class AddPatientPage implements OnInit {
-  patientName: string;
-  patientFirstSurname: string;
-  patientSecondSurname: string;
-  healthCardIdentifier: string;
-  healthCareType: string;
-  patientId = '';
-  showCreatedPatientId = false;
-  showCreatedAdmissionId = false;
-  public response: any;
+  private patientName: string;
+  private patientFirstSurname: string;
+  private patientSecondSurname: string;
+  private healthCardIdentifier: string;
+  private healthCareType: string;
+  private patientId = '';
+  private showCreatedPatientId = false;
+  private showCreatedAdmissionId = false;
 
   constructor(
-    public api: ApiService,
-    public toastController: ToastController,
-    public loadingController: LoadingController
+    private api: ApiService,
+    private toastController: ToastController,
+    private loadingController: LoadingController
   ) {}
 
   ngOnInit() {}

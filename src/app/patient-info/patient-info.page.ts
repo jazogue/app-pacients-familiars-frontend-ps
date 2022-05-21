@@ -6,11 +6,6 @@ import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
-import {
-  IonicSelectableComponent,
-  IonicSelectableModule,
-} from 'ionic-selectable';
-import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
 
 @Component({
   selector: 'app-patient-info',
@@ -18,29 +13,29 @@ import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors
   styleUrls: ['./patient-info.page.scss'],
 })
 export class PatientInfoPage implements OnInit {
-  newStateType: string;
-  patientId: string;
-  patient: any;
-  genStates: any = [];
-  locations: any = [];
-  selectedState: any = null;
-  selectedLocation: any = null;
-  stateNameInput: string;
-  patientName: string;
-  firstSurname: string;
-  secondSurname: string;
-  healthCardIdentifier: string;
-  hospitalCareType: string;
-  admissionId: string;
-  showPatientInfo = false;
+  private newStateType: string;
+  private patientId: string;
+  private patient: any;
+  private genStates: any = [];
+  private locations: any = [];
+  private selectedState: any = null;
+  private selectedLocation: any = null;
+  private stateNameInput: string;
+  private patientName: string;
+  private firstSurname: string;
+  private secondSurname: string;
+  private healthCardIdentifier: string;
+  private hospitalCareType: string;
+  private admissionId: string;
+  private showPatientInfo = false;
 
   constructor(
-    public api: ApiService,
-    public activatedRoute: ActivatedRoute,
-    public loadingController: LoadingController,
-    public toastController: ToastController,
+    private api: ApiService,
+    private activatedRoute: ActivatedRoute,
+    private loadingController: LoadingController,
+    private toastController: ToastController,
     private router: Router,
-    public navCtrl: NavController,
+    private navCtrl: NavController,
     private alertController: AlertController
   ) {}
 
@@ -139,9 +134,6 @@ export class PatientInfoPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           id: 'cancel-button',
-          handler: () => {
-            console.log('Cancel');
-          },
         },
         {
           text: 'Confirmar',
@@ -174,6 +166,7 @@ export class PatientInfoPage implements OnInit {
       message: 'No heu seleccionat cap estat',
       duration: 2000,
       position: 'middle',
+      color: 'secondary',
     });
     toast.present();
   }
@@ -183,6 +176,7 @@ export class PatientInfoPage implements OnInit {
       message: 'No heu introduït cap estat',
       duration: 2000,
       position: 'middle',
+      color: 'secondary',
     });
     toast.present();
   }
@@ -192,6 +186,7 @@ export class PatientInfoPage implements OnInit {
       message: 'Nou estat enviat correctament',
       duration: 2000,
       position: 'middle',
+      color: 'primary',
     });
     toast.present();
   }

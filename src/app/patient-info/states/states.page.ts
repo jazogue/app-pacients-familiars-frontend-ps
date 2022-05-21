@@ -8,10 +8,13 @@ import { ApiService } from '../../api.service';
   styleUrls: ['./states.page.scss'],
 })
 export class StatesPage implements OnInit {
-  admissionId: string;
-  initialStates: any = [];
+  private admissionId: string;
+  private initialStates: any = [];
 
-  constructor(public api: ApiService, public activatedRoute: ActivatedRoute) {}
+  constructor(
+    private api: ApiService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.admissionId = this.activatedRoute.snapshot.paramMap.get('admissionId');

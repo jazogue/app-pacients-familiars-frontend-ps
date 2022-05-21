@@ -26,6 +26,8 @@ ion-row {
   align-items: center;
   justify-content: center;
   height: 100%;
+}
+.marginRow {
   margin-top: 30px;
 }
 
@@ -33,7 +35,7 @@ ion-card {
   background-color: #ffffff;
   box-shadow: none !important;
 }
-.searchButton {
+.modifyPatientButton {
   --border-radius: 0px;
   text-transform: none;
 }

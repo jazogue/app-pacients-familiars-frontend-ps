@@ -12,22 +12,22 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./modify.page.scss'],
 })
 export class ModifyPage implements OnInit {
-  patientName: string;
-  patientId: string;
-  firstSurname: string;
-  secondSurname: string;
-  healthCardIdentifier: string;
-  initialHospitalCareType: string;
-  hospitalCareType: string;
-  admissionId: string;
-  savedNewInfo = false;
+  private patientName: string;
+  private patientId: string;
+  private firstSurname: string;
+  private secondSurname: string;
+  private healthCardIdentifier: string;
+  private initialHospitalCareType: string;
+  private hospitalCareType: string;
+  private admissionId: string;
+  private savedNewInfo = false;
 
   constructor(
-    public api: ApiService,
-    public activatedRoute: ActivatedRoute,
-    public toastController: ToastController,
-    public navCtrl: NavController,
-    public loadingController: LoadingController
+    private api: ApiService,
+    private activatedRoute: ActivatedRoute,
+    private toastController: ToastController,
+    private navCtrl: NavController,
+    private loadingController: LoadingController
   ) {}
 
   ngOnInit() {

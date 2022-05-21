@@ -17,10 +17,12 @@
         <ion-text>
           <h1>Modificar el pacient amb identificador: {{patientId}}</h1>
         </ion-text>
-        <ion-row>
+        <ion-row class="marginRow">
           <ion-text>
             <h5>Introdueix el nom *</h5>
           </ion-text>
+        </ion-row>
+        <ion-row>
           <ion-item class="underline">
             <ion-input
               type="text"
@@ -30,10 +32,12 @@
           </ion-item>
         </ion-row>
 
-        <ion-row>
+        <ion-row class="marginRow">
           <ion-text>
             <h5>Introdueix el primer cognom *</h5>
           </ion-text>
+        </ion-row>
+        <ion-row>
           <ion-item class="underline">
             <ion-input
               type="text"
@@ -43,10 +47,11 @@
           </ion-item>
         </ion-row>
 
-        <ion-row>
+        <ion-row class="marginRow">
           <ion-text>
             <h5>Introdueix el segon cognom</h5>
-          </ion-text>
+          </ion-text> </ion-row
+        ><ion-row>
           <ion-item class="underline">
             <ion-input
               type="text"
@@ -56,10 +61,11 @@
           </ion-item>
         </ion-row>
 
-        <ion-row>
+        <ion-row class="marginRow">
           <ion-text color="dark">
             <h5>Introdueix el número de targeta sanitària *</h5>
-          </ion-text>
+          </ion-text> </ion-row
+        ><ion-row>
           <ion-item class="underline">
             <ion-input
               type="text"
@@ -69,10 +75,12 @@
           </ion-item>
         </ion-row>
 
-        <ion-row>
+        <ion-row class="marginRow">
           <ion-text color="dark">
             <h5>Selecciona el tipus d'atenció sanitària a rebre *</h5>
           </ion-text>
+        </ion-row>
+        <ion-row>
           <ion-item class="underline">
             <ion-select
               placeholder="Tipus d'atenció sanitària"
@@ -86,9 +94,9 @@
           </ion-item>
         </ion-row>
 
-        <ion-row>
+        <ion-row class="marginRow">
           <ion-button
-            class="searchButton"
+            class="modifyPatientButton"
             size="medium"
             color="primary-color"
             fill="outline"

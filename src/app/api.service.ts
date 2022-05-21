@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(public http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   getPatientByAnyCriteria(value) {
     return this.http.get('http://localhost:8080/patient/any/' + value).pipe(

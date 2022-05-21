@@ -13,15 +13,15 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  patient: any = null;
-  admission: any = null;
-  searchInput: string;
+  private patient: any = null;
+  private admission: any = null;
+  private searchInput: string;
   constructor(
-    public api: ApiService,
+    private api: ApiService,
     private router: Router,
-    public toastController: ToastController,
-    public navCtrl: NavController,
-    public loadingController: LoadingController
+    private toastController: ToastController,
+    private navCtrl: NavController,
+    private loadingController: LoadingController
   ) {}
 
   directToPatientInfo() {
