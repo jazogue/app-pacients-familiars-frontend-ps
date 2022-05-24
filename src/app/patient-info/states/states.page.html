@@ -8,23 +8,32 @@
 </ion-header>
 
 <ion-content [scrollEvents]="true">
-  <ion-card
-    *ngFor="let iniState of initialStates.slice().reverse(); let first = first;"
-    class="card-center"
-  >
-    <div *ngIf="first">
-      <div [ngStyle]="{'color': 'white', 'background': '#3e4a74'}">
+  <div *ngIf="stateAvailable">
+    <ion-card
+      *ngFor="let iniState of initialStates.slice().reverse(); let first = first;"
+      class="card-center"
+    >
+      <div *ngIf="first">
+        <div [ngStyle]="{'color': 'white', 'background': '#3e4a74'}">
+          <ion-card-content>
+            <h2><strong>{{iniState.translatedText}}</strong></h2>
+            <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
+          </ion-card-content>
+        </div>
+      </div>
+      <div *ngIf="!first">
         <ion-card-content>
-          <h2><strong>{{iniState.translatedText}}</strong></h2>
+          <h2>{{iniState.translatedText}}</h2>
           <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
         </ion-card-content>
       </div>
-    </div>
-    <div *ngIf="!first">
-      <ion-card-content>
-        <h2>{{iniState.translatedText}}</h2>
-        <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
-      </ion-card-content>
-    </div>
-  </ion-card>
+    </ion-card>
+  </div>
+  <div *ngIf="!stateAvailable">
+    <ion-card class="noStatesCard">
+      <ion-text>
+        <h3><font color="#3e4a74">No hi ha estats disponibles</font></h3>
+      </ion-text>
+    </ion-card>
+  </div>
 </ion-content>
