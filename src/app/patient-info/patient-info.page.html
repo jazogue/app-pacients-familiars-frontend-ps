@@ -42,31 +42,31 @@
                 <ion-card-content>
                   <ion-text>
                     <h5>
-                      Nom:
+                      <strong>Nom: </strong>
                       <font color="#3e4a74">{{patientName}}</font>
                     </h5>
                     <h5>
-                      Cognoms:<font color="#3e4a74">
+                      <strong>Cognoms:</strong
+                      ><font color="#3e4a74">
                         {{firstSurname}} {{secondSurname}}</font
                       >
                     </h5>
                     <h5>
-                      Número de targeta sanitària:<font color="#3e4a74">
+                      <strong>CIP:</strong
+                      ><font color="#3e4a74">
                         {{healthCardIdentifier.toUpperCase()}}</font
                       >
                     </h5>
                     <div *ngIf="hospitalCareType === 'urgencies'">
                       <h5>
-                        Tipus d'atenció sanitària:<font color="#3e4a74">
-                          Urgències</font
-                        >
+                        <strong>Tipus d'atenció sanitària:</strong
+                        ><font color="#3e4a74"> Urgències</font>
                       </h5>
                     </div>
                     <div *ngIf="hospitalCareType === 'quirurgic'">
                       <h5>
-                        Tipus d'atenció sanitària:<font color="#3e4a74">
-                          Quirúrgic</font
-                        >
+                        <strong>Tipus d'atenció sanitària:</strong
+                        ><font color="#3e4a74"> Quirúrgic</font>
                       </h5>
                     </div>
                   </ion-text>

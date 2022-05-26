@@ -15,69 +15,59 @@
     <ion-card class="content-card">
       <ion-card-content>
         <ion-text>
-          <h1>Modificar el pacient amb identificador: {{patientId}}</h1>
+          <h1>
+            Modificar el pacient amb identificador:
+            <font color="#3e4a74">{{patientId}}</font>
+          </h1>
         </ion-text>
         <ion-row class="marginRow">
           <ion-text>
-            <h5>Introdueix el nom *</h5>
+            <h5>Nom *</h5>
           </ion-text>
         </ion-row>
         <ion-row>
           <ion-item class="underline">
-            <ion-input
-              type="text"
-              [(ngModel)]="patientName"
-              class="ion-text-center"
-            ></ion-input>
+            <ion-input type="text" [(ngModel)]="patientName"></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row class="marginRow">
           <ion-text>
-            <h5>Introdueix el primer cognom *</h5>
+            <h5>Primer cognom *</h5>
           </ion-text>
         </ion-row>
         <ion-row>
           <ion-item class="underline">
-            <ion-input
-              type="text"
-              [(ngModel)]="firstSurname"
-              class="ion-text-center"
-            ></ion-input>
+            <ion-input type="text" [(ngModel)]="firstSurname"></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row class="marginRow">
           <ion-text>
-            <h5>Introdueix el segon cognom</h5>
+            <h5>Segon cognom</h5>
           </ion-text> </ion-row
         ><ion-row>
           <ion-item class="underline">
-            <ion-input
-              type="text"
-              [(ngModel)]="secondSurname"
-              class="ion-text-center"
-            ></ion-input>
+            <ion-input type="text" [(ngModel)]="secondSurname"></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row class="marginRow">
           <ion-text color="dark">
-            <h5>Introdueix el número de targeta sanitària *</h5>
+            <h5>Número de targeta sanitària *</h5>
           </ion-text> </ion-row
         ><ion-row>
           <ion-item class="underline">
             <ion-input
               type="text"
               [(ngModel)]="healthCardIdentifier"
-              class="ion-text-center"
             ></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row class="marginRow">
           <ion-text color="dark">
-            <h5>Selecciona el tipus d'atenció sanitària a rebre *</h5>
+            <h5>Tipus d'atenció sanitària *</h5>
           </ion-text>
         </ion-row>
         <ion-row>
@@ -95,17 +85,19 @@
         </ion-row>
 
         <ion-row class="marginRow">
-          <ion-button
-            class="modifyPatientButton"
-            size="medium"
-            color="primary-color"
-            fill="outline"
-            (click)="modifyPatient()"
-          >
-            Modificar pacient
-            <ion-icon slot="start" name="person-add-outline"></ion-icon>
-            <ion-icon slot="end" name="chevron-forward"></ion-icon>
-          </ion-button>
+          <ion-title>
+            <ion-button
+              class="modifyPatientButton"
+              size="medium"
+              color="primary-color"
+              fill="outline"
+              (click)="modifyPatient()"
+            >
+              Modificar pacient
+              <ion-icon slot="start" name="person-add-outline"></ion-icon>
+              <ion-icon slot="end" name="chevron-forward"></ion-icon>
+            </ion-button>
+          </ion-title>
         </ion-row>
       </ion-card-content>
     </ion-card>

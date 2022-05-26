@@ -10,34 +10,33 @@ ion-header {
   }
 }
 
-ion-item {
-  --background: transparent !important;
-  color: black;
-}
-
 ion-content {
   --ion-background-color: #ffffff;
-}
-
-ion-grid {
-  height: 100%;
-}
-ion-row {
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-.marginRow {
-  margin-top: 30px;
-}
-
-ion-card {
-  background-color: #ffffff;
-  box-shadow: none !important;
-}
-.modifyPatientButton {
-  --border-radius: 0px;
-  text-transform: none;
+  ion-card {
+    background-color: #ffffff;
+    box-shadow: none !important;
+  }
+  ion-grid {
+    height: 100%;
+    ion-title {
+      text-align: center;
+    }
+    ion-row {
+      align-items: center;
+      height: 100%;
+      ion-item {
+        --background: transparent !important;
+        color: black;
+      }
+      .createPatientButton {
+        --border-radius: 0px;
+        text-transform: none;
+      }
+    }
+    .marginRow {
+      margin-top: 30px;
+    }
+  }
 }
 
 ion-input {
@@ -56,4 +55,9 @@ ion-input {
 
 ion-text {
   color: black;
+}
+
+.modifyPatientButton {
+  --border-radius: 0px;
+  text-transform: none;
 }

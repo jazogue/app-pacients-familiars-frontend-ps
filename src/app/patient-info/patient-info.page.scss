@@ -12,24 +12,33 @@ ion-header {
 
 ion-content {
   --ion-background-color: #ffffff;
-}
-
-ion-grid {
-  height: 100%;
-}
-
-.normalSpace {
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  margin-top: 20px;
-}
-
-.lessSpace {
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  margin-top: -15px;
+  ion-grid {
+    height: 100%;
+  }
+  .mainCard {
+    background-color: #ffffff;
+    box-shadow: none !important;
+  }
+  .infoCard {
+    background-color: #ffffff;
+    box-shadow: 0 3px 3px var(--ion-color-primary);
+    border-radius: 0px;
+    ion-text {
+      text-align: left;
+    }
+  }
+  .normalSpace {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-top: 20px;
+  }
+  .lessSpace {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-top: -15px;
+  }
 }
 
 ion-item {
@@ -44,17 +53,6 @@ ion-input ion-select {
 
 .displayPatientInfoButtonCol {
   margin-left: -50px;
-}
-
-.mainCard {
-  background-color: #ffffff;
-  box-shadow: none !important;
-}
-
-.infoCard {
-  background-color: #ffffff;
-  box-shadow: 0 3px 3px var(--ion-color-primary);
-  border-radius: 0px;
 }
 
 .editButton {

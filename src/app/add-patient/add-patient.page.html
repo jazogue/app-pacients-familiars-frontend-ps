@@ -8,71 +8,66 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-grid class="ion-text-center">
+  <ion-grid>
     <ion-card class="content-card">
       <ion-card-content>
-        <ion-text>
-          <h1>Afegir un nou pacient</h1>
-        </ion-text>
+        <ion-title>
+          <ion-text>
+            <h1>Afegir un nou pacient</h1>
+          </ion-text>
+        </ion-title>
         <ion-row class="marginRow">
           <ion-text>
-            <h5>Introdueix el nom *</h5>
+            <h5>Nom: *</h5>
           </ion-text> </ion-row
         ><ion-row>
           <ion-item class="underline">
-            <ion-input
-              type="text"
-              [(ngModel)]="patientName"
-              class="ion-text-center"
-            ></ion-input>
+            <ion-input type="text" [(ngModel)]="patientName"></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row class="marginRow">
           <ion-text>
-            <h5>Introdueix el primer cognom *</h5>
+            <h5>Primer cognom: *</h5>
           </ion-text> </ion-row
         ><ion-row>
           <ion-item class="underline">
             <ion-input
               type="text"
               [(ngModel)]="patientFirstSurname"
-              class="ion-text-center"
             ></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row class="marginRow">
           <ion-text>
-            <h5>Introdueix el segon cognom</h5>
+            <h5>Segon cognom:</h5>
           </ion-text> </ion-row
         ><ion-row>
           <ion-item class="underline">
             <ion-input
               type="text"
               [(ngModel)]="patientSecondSurname"
-              class="ion-text-center"
             ></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row class="marginRow">
           <ion-text color="dark">
-            <h5>Introdueix el número de targeta sanitària *</h5>
+            <h5>Número de targeta sanitària: *</h5>
           </ion-text> </ion-row
         ><ion-row>
           <ion-item class="underline">
             <ion-input
               type="text"
               [(ngModel)]="healthCardIdentifier"
-              class="ion-text-center"
             ></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row class="marginRow">
           <ion-text color="dark">
-            <h5>Selecciona el tipus d'atenció sanitària a rebre *</h5>
+            <h5>Tipus d'atenció sanitària: *</h5>
           </ion-text>
         </ion-row>
         <ion-row>
@@ -90,18 +85,21 @@
         </ion-row>
 
         <ion-row class="marginRow">
-          <ion-button
-            class="createPatientButton"
-            size="medium"
-            color="primary-color"
-            fill="outline"
-            (click)="createPatient()"
-          >
-            Crear pacient
-            <ion-icon slot="start" name="person-add-outline"></ion-icon>
-            <ion-icon slot="end" name="chevron-forward"></ion-icon>
-          </ion-button>
+          <ion-title>
+            <ion-button
+              class="createPatientButton"
+              size="medium"
+              color="primary-color"
+              fill="outline"
+              (click)="createPatient()"
+            >
+              Crear pacient
+              <ion-icon slot="start" name="person-add-outline"></ion-icon>
+              <ion-icon slot="end" name="chevron-forward"></ion-icon>
+            </ion-button>
+          </ion-title>
         </ion-row>
+
         <div *ngIf="showCreatedPatientId">
           <ion-row>
             <ion-text>
