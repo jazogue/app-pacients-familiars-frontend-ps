@@ -136,21 +136,6 @@
                 >
                 </ionic-selectable>
               </ion-item>
-              <ion-item class="underline">
-                <ionic-selectable
-                  item-content
-                  placeholder="Selecciona la localització (opcional)"
-                  [(ngModel)]="selectedLocation"
-                  [items]="locations"
-                  itemTextField="locationName"
-                  [canSearch]="true"
-                  closeButtonText="Cancel·lar"
-                  searchPlaceholder="Selecciona la localització (opcional)"
-                  [canClear]="true"
-                  clearButtonText="Eliminar selecció"
-                >
-                </ionic-selectable>
-              </ion-item>
               <ion-button
                 class="editButton"
                 size="medium"
@@ -177,13 +162,13 @@
             <ion-item class="underline">
               <ionic-selectable
                 item-content
-                placeholder="Selecciona la localització (opcional)"
+                placeholder="Selecciona la localització"
                 [(ngModel)]="selectedLocation"
                 [items]="locations"
                 itemTextField="locationName"
                 [canSearch]="true"
                 closeButtonText="Cancel·lar"
-                searchPlaceholder="Selecciona la localització (opcional)"
+                searchPlaceholder="Selecciona la localització"
                 [canClear]="true"
                 clearButtonText="Eliminar selecció"
               >

@@ -31,7 +31,7 @@ export class ApiService {
     return this.http.get('http://localhost:8080/states/generic/ca');
   }
 
-  postGenericState(admissionId, stateId, locationId) {
+  postGenericState(admissionId, stateId) {
     return this.http
       .post(
         'http://localhost:8080/state/generic/' +

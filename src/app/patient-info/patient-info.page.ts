@@ -86,11 +86,7 @@ export class PatientInfoPage implements OnInit {
     if (this.selectedState == null) {
       this.presentToastErrorPostGenericState();
     } else {
-      this.api.postGenericState(
-        this.admissionId,
-        this.selectedState.stateId,
-        this.selectedLocation.locationId
-      );
+      this.api.postGenericState(this.admissionId, this.selectedState.stateId);
       this.presentStateSent();
     }
   }
@@ -98,12 +94,15 @@ export class PatientInfoPage implements OnInit {
   postCustomState() {
     if (this.stateNameInput == null || this.stateNameInput === '') {
       this.presentToastErrorPostCustomState();
+    } else if (this.selectedLocation == null) {
+      this.presentToastErrorPostCustomStateLocation();
     } else {
       this.api.postCustomState(
         this.admissionId,
         this.stateNameInput,
         this.selectedLocation.locationId
       );
+
       this.presentStateSent();
     }
   }
@@ -153,17 +152,9 @@ export class PatientInfoPage implements OnInit {
     await alert.present();
   }
 
-  private async presentLoadingWithOptions() {
-    const loading = await this.loadingController.create({
-      message: 'Caragando...',
-      spinner: 'bubbles',
-    });
-    return await loading.present();
-  }
-
   private async presentToastErrorPostGenericState() {
     const toast = await this.toastController.create({
-      message: 'No heu seleccionat cap estat',
+      message: 'No has seleccionat cap estat',
       duration: 2000,
       position: 'middle',
       color: 'secondary',
@@ -173,7 +164,7 @@ export class PatientInfoPage implements OnInit {
 
   private async presentToastErrorPostCustomState() {
     const toast = await this.toastController.create({
-      message: 'No heu introduït cap estat',
+      message: 'No has introduït cap estat',
       duration: 2000,
       position: 'middle',
       color: 'secondary',
@@ -181,6 +172,15 @@ export class PatientInfoPage implements OnInit {
     toast.present();
   }
 
+  private async presentToastErrorPostCustomStateLocation() {
+    const toast = await this.toastController.create({
+      message: 'No has seleccionat cap localització',
+      duration: 2000,
+      position: 'middle',
+      color: 'secondary',
+    });
+    toast.present();
+  }
   private async presentStateSent() {
     const toast = await this.toastController.create({
       message: 'Nou estat enviat correctament',
