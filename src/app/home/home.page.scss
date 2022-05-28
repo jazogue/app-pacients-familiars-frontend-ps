@@ -17,42 +17,35 @@ ion-content {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-}
-
-ion-grid {
-  height: 100%;
-}
-ion-row {
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-ion-card {
-  box-shadow: none !important;
-  background-color: #ffffff;
-  ion-text {
-    color: black;
+  ion-grid {
+    height: 100%;
   }
-  ion-item {
-    --background: transparent !important;
+  ion-row {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
   }
-}
-.searchButton {
-  --border-radius: 0px;
-  text-transform: none;
-}
-
-ion-input {
-  --placeholder-color: var(--ion-color-primary);
-  color: var(--ion-color-primary);
-  caret-color: var(--ion-color-secondary);
-}
-
-.underline {
-  --border-color: var(--ion-color-primary);
-  --highlight-background: var(--ion-color-secondary);
-  .item-content {
-    background-color: transparent !important;
+  ion-card {
+    box-shadow: none !important;
+    background-color: #ffffff;
+    ion-text {
+      color: black;
+    }
+    ion-item {
+      --background: transparent !important;
+    }
+  }
+  .searchButton {
+    --border-radius: 0px;
+    text-transform: none;
+  }
+  ion-input {
+    --placeholder-color: var(--ion-color-primary);
+    color: var(--ion-color-primary);
+    caret-color: var(--ion-color-secondary);
+  }
+  .underline {
+    --border-color: var(--ion-color-primary);
+    --highlight-background: var(--ion-color-secondary);
   }
 }

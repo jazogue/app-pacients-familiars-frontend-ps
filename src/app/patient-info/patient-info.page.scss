@@ -18,13 +18,13 @@ ion-content {
   .mainCard {
     background-color: #ffffff;
     box-shadow: none !important;
-  }
-  .infoCard {
-    background-color: #ffffff;
-    box-shadow: 0 3px 3px var(--ion-color-primary);
-    border-radius: 0px;
-    ion-text {
-      text-align: left;
+    .infoCard {
+      background-color: #ffffff;
+      box-shadow: 0 3px 3px var(--ion-color-primary);
+      border-radius: 0px;
+      ion-text {
+        text-align: left;
+      }
     }
   }
   .normalSpace {
@@ -39,6 +39,26 @@ ion-content {
     height: 100%;
     margin-top: -15px;
   }
+  .item,
+  .list,
+  .item-content,
+  .item-complex {
+    --ion-background-color: transparent !important;
+  }
+  .editButton {
+    --border-radius: 0px;
+    text-transform: none;
+  }
+  .underline {
+    --border-color: var(--ion-color-primary);
+    --highlight-background: var(--ion-color-secondary);
+    .item-content {
+      background-color: transparent !important;
+    }
+  }
+  .displayPatientInfoButtonCol {
+    margin-left: -50px;
+  }
 }
 
 ion-item {
@@ -49,30 +69,6 @@ ion-item {
 ion-input ion-select {
   color: var(--ion-color-primary);
   caret-color: var(--ion-color-secondary);
-}
-
-.displayPatientInfoButtonCol {
-  margin-left: -50px;
-}
-
-.editButton {
-  --border-radius: 0px;
-  text-transform: none;
-}
-
-.item,
-.list,
-.item-content,
-.item-complex {
-  --ion-background-color: transparent !important;
-}
-
-.underline {
-  --border-color: var(--ion-color-primary);
-  --highlight-background: var(--ion-color-secondary);
-  .item-content {
-    background-color: transparent !important;
-  }
 }
 
 ion-text {

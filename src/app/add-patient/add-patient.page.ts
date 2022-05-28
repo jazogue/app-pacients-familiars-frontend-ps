@@ -82,7 +82,7 @@ export class AddPatientPage implements OnInit {
     const regexp = new RegExp(
       '([A-Za-z]{4})+' + String.fromCharCode(92) + 'd{10}'
     );
-    return regexp.test(cardNumber);
+    return regexp.test(cardNumber) && cardNumber.length === 14;
   }
 
   private async presentToastIncompleteForm() {

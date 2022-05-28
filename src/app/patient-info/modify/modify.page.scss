@@ -37,6 +37,17 @@ ion-content {
       margin-top: 30px;
     }
   }
+  .modifyPatientButton {
+    --border-radius: 0px;
+    text-transform: none;
+  }
+  .underline {
+    --border-color: var(--ion-color-primary);
+    --highlight-background: var(--ion-color-secondary);
+    .item-content {
+      background-color: transparent !important;
+    }
+  }
 }
 
 ion-input {
@@ -45,19 +56,6 @@ ion-input {
   caret-color: var(--ion-color-secondary);
 }
 
-.underline {
-  --border-color: var(--ion-color-primary);
-  --highlight-background: var(--ion-color-secondary);
-  .item-content {
-    background-color: transparent !important;
-  }
-}
-
 ion-text {
   color: black;
-}
-
-.modifyPatientButton {
-  --border-radius: 0px;
-  text-transform: none;
 }
