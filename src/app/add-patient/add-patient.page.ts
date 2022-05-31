@@ -53,6 +53,7 @@ export class AddPatientPage implements OnInit {
             this.presentToastAddedPatient();
             this.patientId = result.id;
             this.showCreatedPatientId = true;
+            this.showCreatedAdmissionId = false;
             this.api.postAdmission(this.healthCareType, this.patientId);
           },
           (err) => {
@@ -67,6 +68,7 @@ export class AddPatientPage implements OnInit {
                   },
                   (err2) => {
                     this.patientId = result2.patientId;
+                    this.showCreatedPatientId = false;
                     this.showCreatedAdmissionId = true;
                     this.api.postAdmission(this.healthCareType, this.patientId);
                     this.presentToastAddedAdmission();
