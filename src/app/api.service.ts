@@ -153,4 +153,37 @@ export class ApiService {
   getLocations() {
     return this.http.get('http://localhost:8080/locations');
   }
+
+  postLocation(locatioName) {
+    return this.http.post(
+      'http://localhost:8080/location',
+      JSON.parse('{  "locationName": "' + locatioName + '"  }')
+    );
+  }
+
+  postNewGenericState(selectedLocationId) {
+    return this.http.post(
+      'http://localhost:8080/state/generic',
+      JSON.parse(
+        '{  "stateType": "generic", "locationName": "' +
+          selectedLocationId +
+          '"  }'
+      )
+    );
+  }
+
+  postTranslation(genericStateId, translatedText, idiom) {
+    return this.http
+      .post(
+        'http://localhost:8080/translation/state/' + genericStateId,
+        JSON.parse(
+          '{  "translatedText": "' +
+            translatedText +
+            '", "translationIdiom": "' +
+            idiom +
+            '" }'
+        )
+      )
+      .toPromise();
+  }
 }

@@ -1,0 +1,147 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <img src="assets/img/top_bar2.png" width="50px" slot="end" />
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-card class="content-card">
+      <ion-title>
+        <ion-text>
+          <h1>Afegir nous recursos</h1>
+        </ion-text>
+      </ion-title>
+      <ion-title>
+        <ion-row class="selectTypeResources">
+          <ion-item class="underline"
+            ><ion-select
+              placeholder="Què vols afegir?"
+              okText="Acceptar"
+              cancelText="Cancel·lar"
+              [(ngModel)]="showStateOrLocation"
+              interface="popover"
+            >
+              <ion-select-option value="state">Estat genèric</ion-select-option>
+              <ion-select-option value="location"
+                >Localització</ion-select-option
+              >
+            </ion-select></ion-item
+          >
+        </ion-row>
+      </ion-title>
+      <ion-card-content>
+        <div *ngIf="showStateOrLocation === 'location'">
+          <ion-title>
+            <ion-text>
+              <h1>Afegir una localització</h1>
+            </ion-text>
+          </ion-title>
+          <ion-row class="marginRow">
+            <ion-text>
+              <h5>Nom de la localització: *</h5>
+            </ion-text> </ion-row
+          ><ion-row>
+            <ion-item class="underline">
+              <ion-input type="text" [(ngModel)]="locationName"></ion-input>
+            </ion-item>
+          </ion-row>
+
+          <ion-row class="marginRow">
+            <ion-title>
+              <ion-button
+                class="buttonStyling"
+                size="medium"
+                color="primary-color"
+                fill="outline"
+                (click)="createLocation()"
+              >
+                Crear localització
+                <ion-icon slot="start" name="location-outline"></ion-icon>
+                <ion-icon slot="end" name="chevron-forward"></ion-icon>
+              </ion-button>
+            </ion-title>
+          </ion-row>
+        </div>
+
+        <div *ngIf="showStateOrLocation === 'state'">
+          <ion-title>
+            <ion-text>
+              <h1>Afegir un estat genèric</h1>
+            </ion-text>
+          </ion-title>
+          <ion-row class="marginRow">
+            <ion-text>
+              <h5>Missatge de l'estat genèric en català: *</h5>
+            </ion-text> </ion-row
+          ><ion-row>
+            <ion-item class="underline">
+              <ion-input type="text" [(ngModel)]="genericStateCa"></ion-input>
+            </ion-item>
+          </ion-row>
+          <ion-row class="marginRow">
+            <ion-text>
+              <h5>Missatge de l'estat genèric en castellà: *</h5>
+            </ion-text> </ion-row
+          ><ion-row>
+            <ion-item class="underline">
+              <ion-input type="text" [(ngModel)]="genericStateEs"></ion-input>
+            </ion-item>
+          </ion-row>
+          <ion-row class="marginRow">
+            <ion-text>
+              <h5>Missatge de l'estat genèric en anglès: *</h5>
+            </ion-text> </ion-row
+          ><ion-row>
+            <ion-item class="underline">
+              <ion-input type="text" [(ngModel)]="genericStateEn"></ion-input>
+            </ion-item>
+          </ion-row>
+          <ion-row class="marginRow">
+            <ion-text>
+              <h5>Localització de l'estat genèric: *</h5>
+            </ion-text> </ion-row
+          ><ion-row>
+            <ion-item class="underline">
+              <ionic-selectable
+                item-content
+                placeholder="Selecciona la localització"
+                [(ngModel)]="selectedLocation"
+                [items]="locations"
+                itemTextField="locationName"
+                [canSearch]="true"
+                closeButtonText="Cancel·lar"
+                searchPlaceholder="Selecciona la localització"
+                [canClear]="true"
+                clearButtonText="Eliminar selecció"
+              >
+              </ionic-selectable>
+            </ion-item>
+          </ion-row>
+
+          <ion-row class="marginRow">
+            <ion-title>
+              <ion-button
+                class="buttonStyling"
+                size="medium"
+                color="primary-color"
+                fill="outline"
+                (click)="createGenericState()"
+              >
+                Crear estat genèric
+                <ion-icon
+                  slot="start"
+                  name="chatbox-ellipses-outline"
+                ></ion-icon>
+                <ion-icon slot="end" name="chevron-forward"></ion-icon>
+              </ion-button>
+            </ion-title>
+          </ion-row>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-grid>
+</ion-content>

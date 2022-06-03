@@ -181,6 +181,7 @@ export class PatientInfoPage implements OnInit {
     });
     toast.present();
   }
+
   private async presentStateSent() {
     const toast = await this.toastController.create({
       message: 'Nou estat enviat correctament',

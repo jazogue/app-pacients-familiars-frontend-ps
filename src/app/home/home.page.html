@@ -36,9 +36,8 @@
             <ion-icon slot="start" name="search"></ion-icon>
             <ion-icon slot="end" name="chevron-forward"></ion-icon>
           </ion-button>
-          <br />
-          <br />
-          <ion-row>
+
+          <ion-row class="marginButtonsTopDouble">
             <ion-button
               class="searchButton"
               size="medium"
@@ -46,8 +45,21 @@
               fill="outline"
               (click)="directToCreatePatient()"
             >
-              Crear un nou pacient
+              Crear nou pacient
               <ion-icon slot="start" name="person-add-outline"></ion-icon>
+              <ion-icon slot="end" name="chevron-forward"></ion-icon>
+            </ion-button>
+          </ion-row>
+          <ion-row class="marginButtonsTop">
+            <ion-button
+              class="searchButton"
+              size="medium"
+              color="primary-color"
+              fill="outline"
+              (click)="directToCreateResources()"
+            >
+              Crear estat genèric o localització
+              <ion-icon slot="start" name="newspaper-outline"></ion-icon>
               <ion-icon slot="end" name="chevron-forward"></ion-icon>
             </ion-button>
           </ion-row>

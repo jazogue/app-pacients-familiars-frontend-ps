@@ -69,6 +69,10 @@ export class HomePage {
     this.router.navigate(['/add-patient']);
   }
 
+  directToCreateResources() {
+    this.router.navigate(['/add-resources']);
+  }
+
   private async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'Cercant el pacient...',
