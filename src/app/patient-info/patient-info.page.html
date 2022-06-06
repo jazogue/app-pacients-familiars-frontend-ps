@@ -26,11 +26,7 @@
             </ion-text>
           </ion-col>
           <ion-col class="displayPatientInfoButtonCol">
-            <ion-button
-              class="editButton"
-              color="primary-color"
-              fill="outline"
-              (click)="displayPatientInfo()"
+            <ion-button class="editButton" (click)="displayPatientInfo()"
               ><ion-icon name="caret-down-outline"></ion-icon
             ></ion-button>
           </ion-col>
@@ -70,11 +66,7 @@
                       </h5>
                     </div>
                   </ion-text>
-                  <ion-button
-                    class="editButton"
-                    color="primary-color"
-                    fill="outline"
-                    (click)="goToModifyPatient()"
+                  <ion-button class="editButton" (click)="goToModifyPatient()"
                     ><ion-icon name="create-outline"></ion-icon
                   ></ion-button>
                 </ion-card-content>
@@ -87,8 +79,6 @@
           <ion-button
             class="editButton"
             size="medium"
-            color="primary-color"
-            fill="outline"
             (click)="presentAlertConfirm()"
           >
             Finalitzar seguiment del pacient
@@ -139,8 +129,6 @@
               <ion-button
                 class="editButton"
                 size="medium"
-                color="primary-color"
-                fill="outline"
                 (click)="postGenericState()"
               >
                 Enviar estat genèric
@@ -177,8 +165,6 @@
             <ion-button
               class="editButton"
               size="medium"
-              color="primary-color"
-              fill="outline"
               (click)="postCustomState()"
             >
               Enviar estat personalitzat
@@ -190,8 +176,6 @@
           <ion-button
             class="editButton"
             size="medium"
-            color="primary-color"
-            fill="outline"
             (click)="directToStates()"
           >
             Consultar els estats del pacient
