@@ -17,14 +17,14 @@
         <div [ngStyle]="{'color': 'white', 'background': '#3e4a74'}">
           <ion-card-content>
             <h2><strong>{{iniState.translatedText}}</strong></h2>
-            <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
+            <h5>{{iniState.startTime | date:'HH:mm'}}</h5>
           </ion-card-content>
         </div>
       </div>
       <div *ngIf="!first">
         <ion-card-content>
           <h2>{{iniState.translatedText}}</h2>
-          <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
+          <h5>{{iniState.startTime | date:'HH:mm'}}</h5>
         </ion-card-content>
       </div>
     </ion-card>
