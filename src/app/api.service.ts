@@ -68,7 +68,7 @@ export class ApiService {
     healthCardIdentifier
   ) {
     return this.http
-      .post(
+      .put(
         'http://localhost:8080/patient/modify',
         JSON.parse(
           '{ "patientId": "' +
@@ -140,7 +140,7 @@ export class ApiService {
 
   modifyAdmission(patientId) {
     return this.http
-      .post('http://localhost:8080/admission/type/patient/' + patientId, null)
+      .put('http://localhost:8080/admission/type/patient/' + patientId, null)
       .toPromise();
   }
 
