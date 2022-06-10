@@ -1,1 +1,1 @@
-# app-pacients-familiars-frontend-ps
+# Aplicació de control de sales seguiment virtuals - Frontend
