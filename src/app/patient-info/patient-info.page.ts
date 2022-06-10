@@ -124,9 +124,9 @@ export class PatientInfoPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Eliminar seguiment',
       message:
-        'Està segur de que vol eliminar el seguiment del pacient amb identificador <strong>' +
+        'Està segur que vol eliminar el seguiment del pacient amb identificador <strong>' +
         this.patientId +
-        '</strong>',
+        '</strong>?',
       buttons: [
         {
           text: 'Cancel·lar',
